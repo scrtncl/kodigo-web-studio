@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kodigo Web Studio | Financial Proposal</title>
+  <meta name="description" content="Itemized startup capital, operating expenditures, pricing model, and interactive income projection calculator. Founder: Carl Benedict C. Enriquez.">
+  <meta name="theme-color" content="#070913">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23070913'/%3E%3Ctext x='32' y='44' font-size='28' text-anchor='middle' fill='%2300F0FF' font-family='monospace' font-weight='700'%3E%26lt%3B/%26gt%3B%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-xl sticky-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <span class="logo-mark" aria-hidden="true">&lt;/&gt;</span> Kodigo Web Studio
+    </a>
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navMenu"
+            aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+        <li class="nav-item dropdown">
+          <button class="nav-link dropdown-toggle active" type="button" data-bs-toggle="dropdown" aria-expanded="false">Business Proposal</button>
+          <ul class="dropdown-menu"><li><a class="dropdown-item" href="market.html">Target Market</a></li>
+<li><a class="dropdown-item" href="marketing.html">Marketing Strategy</a></li>
+<li><a class="dropdown-item" href="operations.html">Business Operations</a></li>
+<li><a class="dropdown-item active" aria-current="page" href="financial.html">Financial Proposal</a></li></ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<header class="page-hero">
+  <div class="container">
+    <p class="hero-eyebrow">Section 7 &nbsp;·&nbsp; Budget &amp; assumptions</p>
+    <h1>Financial Proposal</h1>
+    <p class="lead">
+      A starting budget for the proposed studio. Change the project quantities and promotional assumptions to see how the numbers respond.
+    </p>
+  </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main>
+  <section id="financial">
+    <div class="container">
+
+      <div class="section-header">
+        <h2>What it could cost to get started</h2>
+        <p class="intro">
+          These figures are planning allowances, not supplier quotes or guaranteed earnings. I would confirm costs before launching.
+        </p>
+      </div>
+
+      <div class="fin-grid mt-4">
+
+        <!-- Left: Startup Capital Table -->
+        <div>
+          <h3>Estimated Startup Capital</h3>
+          <p style="color:var(--muted); font-size: 0.95rem;">
+            This proposal assumes I can use an existing laptop and work from home. No new computer purchase or separate office rent is included.
+          </p>
+
+          <div class="table-responsive mt-3">
+            <table class="table cost-table align-middle">
+              <thead>
+                <tr>
+                  <th scope="col">Budget Line Item</th>
+                  <th scope="col" class="text-end">Estimated Cost (&#8369;)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Studio domain allowance (1 year; quote needed)</td><td class="text-end cost">1,500</td></tr>
+                <tr><td>Software Utilities &amp; Asset Packs</td>                                 <td class="text-end cost">1,000</td></tr>
+                <tr><td>Registration and permit allowance (fees to be confirmed)</td>        <td class="text-end cost">2,000</td></tr>
+                <tr><td>Initial Promotional Collateral (Sample Cards, Launch Meta Ads)</td>       <td class="text-end cost">2,500</td></tr>
+                <tr><td>Operating reserve (2 months at ₱1,500)</td>                  <td class="text-end cost">3,000</td></tr>
+                <tr><td>Setup incidentals and sample materials</td>                     <td class="text-end cost">500</td></tr>
+                <tr><td>Contingency &amp; Emergency Working Capital</td>                         <td class="text-end cost">1,500</td></tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th scope="row">Total Startup Capital</th>
+                  <th class="text-end" id="totalCost">&#8369;0</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <div class="p-3 rounded mt-3" style="background: var(--panel); border: 1px solid var(--line-cyan);">
+            <h4 class="h6 mb-1 text-white">Monthly Fixed Running Costs</h4>
+            <p class="mb-0" style="color:var(--muted); font-size: 0.9rem;">
+              Estimated at <strong>&#8369;1,500 / month</strong>, covering internet and power allocation (&#8369;1,000),
+              optional tools allowance (&#8369;200), and Facebook ad budget (&#8369;300).
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Calculator -->
+        <div>
+          <h3>Try a monthly scenario</h3>
+          <p style="color:var(--muted); font-size:0.95rem;">
+            Enter completed, fully paid projects for one month. Whole projects only. This is a capacity assumption, not a sales forecast.
+          </p>
+
+          <form id="incomeForm" class="calc-form mt-3" novalidate>
+            <div>
+              <label for="qtyStarter" class="form-label">Starter (&#8369;3,500)</label>
+              <input type="number" class="form-control" id="qtyStarter" min="0" max="100" step="1" value="2">
+            </div>
+            <div>
+              <label for="qtyBusiness" class="form-label">Business (&#8369;6,500)</label>
+              <input type="number" class="form-control" id="qtyBusiness" min="0" max="100" step="1" value="1">
+            </div>
+            <div>
+              <label for="qtyPremium" class="form-label">Premium (&#8369;12,000)</label>
+              <input type="number" class="form-control" id="qtyPremium" min="0" max="100" step="1" value="0">
+            </div>
+            <fieldset class="scenario-options">
+              <legend>Promotional assumptions</legend>
+              <label><input type="checkbox" id="launchDiscount"> Apply 30% launch discount to this month’s projects</label>
+              <p class="note">For up to five eligible projects total at launch. This scenario assumes all entered projects qualify.</p>
+              <label><input type="checkbox" id="referralReward"> Model all projects as referred (10% of fees collected)</label>
+            </fieldset>
+            <p id="calcStatus" class="text-warning" role="status"></p>
+            <button type="submit" class="btn btn-accent">Recalculate</button>
+          </form>
+
+          <dl class="results mt-3" aria-live="polite">
+            <div class="result-row">
+              <dt>Fees before discount</dt>
+              <dd id="resRevenue">—</dd>
+            </div>
+            <div class="result-row">
+              <dt>Launch discount</dt><dd id="resDiscount">—</dd></div>
+            <div class="result-row"><dt>Fees collected</dt><dd id="resCollected">—</dd></div>
+            <div class="result-row"><dt>Referral rewards</dt><dd id="resReferrals">—</dd></div>
+            <div class="result-row"><dt>Monthly running costs</dt>
+              <dd id="resCosts">—</dd>
+            </div>
+            <div class="result-row">
+              <dt>Monthly surplus before tax &amp; owner pay</dt>
+              <dd id="resNet">—</dd>
+            </div>
+            <div class="result-row">
+              <dt>12-month equivalent at the same assumptions</dt>
+              <dd id="resYear">—</dd>
+            </div>
+            <div class="result-row">
+              <dt>Months to match startup budget</dt>
+              <dd id="resBreak">—</dd>
+            </div>
+          </dl>
+
+          <p class="note mt-3">
+            The 12-month figure repeats this scenario; it is not a forecast. Launch discounts are limited to the first five clients overall and would not recur every month. The surplus excludes owner pay, taxes, depreciation, and any extra client-specific costs. The recovery estimate uses the full startup budget, including the operating reserve.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Financial Narrative Summary -->
+      <div class="mt-5 p-4 rounded" style="background: var(--panel); border: 1px solid var(--line);">
+        <h3 class="mb-2">What I still need to validate</h3>
+        <p style="color:var(--muted); line-height: 1.7;">
+          The baseline assumes two Starter projects and one Business project per month. That may be ambitious alongside classes. Before launch, I would track the hours needed for sample builds, confirm setup costs, and ask local owners about their budgets. A quieter month or extra revisions would reduce the surplus. The first-year goal of 10 websites remains a target; this calculator explores different monthly volumes.
+        </p>
+
+      </div>
+
+      <!-- Continue the proposal in reading order. -->
+      <div class="next-section-banner mt-5">
+        <div>
+          <span class="next-label">Next Section &bull; Contact Information</span>
+          <h3 class="next-title">Tell Me About Your Website Project</h3>
+        </div>
+        <a href="contact.html" class="btn btn-accent btn-lg">Get in Touch &rarr;</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-row">
+    <span>&copy; <span id="year"></span> Kodigo Web Studio &bull; Carl Benedict C. Enriquez &mdash; BS Computer Science Business Proposal.</span>
+    <a href="#mainNav">Back to top &uarr;</a>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

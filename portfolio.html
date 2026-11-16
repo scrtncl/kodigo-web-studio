@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kodigo Web Studio | Portfolio &amp; Sample Work</title>
+  <meta name="description" content="Explore real UI and web development work built by Carl Benedict C. Enriquez, founder of Kodigo Web Studio.">
+  <meta name="theme-color" content="#070913">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23070913'/%3E%3Ctext x='32' y='44' font-size='28' text-anchor='middle' fill='%2300F0FF' font-family='monospace' font-weight='700'%3E%26lt%3B/%26gt%3B%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-xl sticky-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <span class="logo-mark" aria-hidden="true">&lt;/&gt;</span> Kodigo Web Studio
+    </a>
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navMenu"
+            aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="portfolio.html">Portfolio</a></li>
+        <li class="nav-item dropdown">
+          <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Business Proposal</button>
+          <ul class="dropdown-menu"><li><a class="dropdown-item" href="market.html">Target Market</a></li>
+<li><a class="dropdown-item" href="marketing.html">Marketing Strategy</a></li>
+<li><a class="dropdown-item" href="operations.html">Business Operations</a></li>
+<li><a class="dropdown-item" href="financial.html">Financial Proposal</a></li></ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<header class="page-hero">
+  <div class="container">
+    <p class="hero-eyebrow">Portfolio &nbsp;·&nbsp; Selected projects</p>
+    <h1>Sample Work</h1>
+    <p class="lead">
+      A selection of work I’ve shared, from utility tracking to network dashboards and civic services. Open a screenshot to see the interface in more detail.
+    </p>
+  </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main>
+  <section id="work">
+    <div class="container">
+
+      <div class="section-header">
+        <h2>Featured Projects</h2>
+        <p class="intro">
+          These notes describe what the screenshots show. They do not verify live integrations, deployment, or accessibility compliance. My exact role and implementation tools are not yet documented here.
+        </p>
+      </div>
+
+      <div class="work-grid mt-4">
+
+        <!-- Project 1 -->
+        <figure class="work">
+          <button type="button" class="work-img-wrap" aria-label="Enlarge Utility Bill Tracker App"
+               data-bs-toggle="modal"
+               data-bs-target="#portfolioModal"
+               data-img="images/work-electricity.png"
+               data-title="Utility Bill Tracker App"
+               data-desc="The screen brings consumption, a bill estimate, and a chat interface into one view. Screenshot preview; implementation details are not yet documented.">
+            <img src="images/work-electricity.png"
+                 alt="AMI Smart Meter mobile app interface"
+                 width="430" height="790">
+          </button>
+          <figcaption><span class="case-label">Screenshot study / 01</span><h3>Utility Bill Tracker App</h3><dl class="case-notes"><dt>The problem</dt><dd>Help a household understand its electricity use.</dd><dt>What is shown</dt><dd>The screen brings consumption, a bill estimate, and a chat interface into one view.</dd><dt>Design focus</dt><dd>Making numbers understandable at a glance.</dd></dl><div class="tech-pills"><span class="pill">Bill overview</span><span class="pill">Mobile interface</span></div></figcaption>
+        </figure>
+
+        <!-- Project 2 -->
+        <figure class="work">
+          <button type="button" class="work-img-wrap work-img-wrap--wide" aria-label="Enlarge Small Office Network Dashboard"
+               data-bs-toggle="modal"
+               data-bs-target="#portfolioModal"
+               data-img="images/work-network.png"
+               data-title="Small Office Network Dashboard"
+               data-desc="The dashboard groups speed results, latency, and connection summaries on one screen. Screenshot preview; implementation details are not yet documented.">
+            <img src="images/work-network.png"
+                 alt="Network Dashboard for small office and home lab"
+                 width="1024" height="600">
+          </button>
+          <figcaption><span class="case-label">Screenshot study / 02</span><h3>Small Office Network Dashboard</h3><dl class="case-notes"><dt>The problem</dt><dd>Make network status easier to check.</dd><dt>What is shown</dt><dd>The dashboard groups speed results, latency, and connection summaries on one screen.</dd><dt>Design focus</dt><dd>Helping a viewer find the important result without reading every metric.</dd></dl><div class="tech-pills"><span class="pill">Network overview</span><span class="pill">Dashboard layout</span></div></figcaption>
+        </figure>
+
+        <!-- Project 3 -->
+        <figure class="work">
+          <button type="button" class="work-img-wrap" aria-label="Enlarge Civic Services Mobile Portal"
+               data-bs-toggle="modal"
+               data-bs-target="#portfolioModal"
+               data-img="images/work-govapp.jpg"
+               data-title="Civic Services Mobile Portal"
+               data-desc="The interface groups service shortcuts and information into distinct sections. Screenshot preview; implementation details are not yet documented.">
+            <img src="images/work-govapp.jpg"
+                 alt="Civic government portal mobile application"
+                 width="430" height="790">
+          </button>
+          <figcaption><span class="case-label">Screenshot study / 03</span><h3>Civic Services Mobile Portal</h3><dl class="case-notes"><dt>The problem</dt><dd>Help users find public services from a phone.</dd><dt>What is shown</dt><dd>The interface groups service shortcuts and information into distinct sections.</dd><dt>Design focus</dt><dd>Keeping many options easy to scan on a small screen.</dd></dl><div class="tech-pills"><span class="pill">Service directory</span><span class="pill">Mobile navigation</span></div></figcaption>
+        </figure>
+
+      </div>
+
+      <!-- Skills demonstration banner -->
+      <div class="mt-5 p-4 rounded" style="background: var(--panel); border: 1px solid var(--line-cyan);">
+        <h3 class="mb-2">How these translate to your business website</h3>
+        <p style="color:var(--muted); line-height: 1.7;">
+          The same questions matter for a local business site: can a visitor find the price, understand the service, and know how to get in touch? These are the details I want to carry into Kodigo’s client work.
+        </p>
+        <div class="d-flex gap-3 flex-wrap mt-3">
+          <a href="services.html" class="btn btn-accent">View our website packages</a>
+          <a href="contact.html" class="btn btn-outline-light">Discuss a custom build</a>
+        </div>
+      </div>
+
+      <!-- Next Section Pagination Banner -->
+      <div class="next-section-banner mt-5">
+        <div>
+          <span class="next-label">Next Section &bull; Target Market</span>
+          <h3 class="next-title">Who these websites are for</h3>
+        </div>
+        <a href="market.html" class="btn btn-accent btn-lg">View Target Market &rarr;</a>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- Lightbox Modal for Screenshots -->
+<div class="modal fade" id="portfolioModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content" style="background: #090E22; border: 1px solid var(--line-cyan); border-radius: var(--radius); box-shadow: 0 0 40px rgba(0, 240, 255, 0.25);">
+      <div class="modal-header" style="border-bottom: 1px solid var(--line);">
+        <h3 class="modal-title fs-5 text-white" id="modalTitle">Project Inspection</h3>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center p-3">
+        <img id="modalImg" alt="Project detail inspection" class="img-fluid rounded mb-3" style="max-height: 70vh; object-fit: contain; border: 1px solid var(--line);">
+        <p id="modalDesc" class="text-muted text-start mb-0" style="font-size: 0.95rem; line-height: 1.6;"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-row">
+    <span>&copy; <span id="year"></span> Kodigo Web Studio &bull; Carl Benedict C. Enriquez &mdash; BS Computer Science Business Proposal.</span>
+    <a href="#mainNav">Back to top &uarr;</a>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
