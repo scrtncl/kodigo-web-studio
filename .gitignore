@@ -1,2 +1,11 @@
 # Local recovery snapshots are not website assets.
 .recovery-backups/
+
+# Local configuration and credentials must never be published.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.aws/
+.codex/
