@@ -1,0 +1,686 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; form-action 'none'; base-uri 'none'"><title>Device manager - static sample preview</title><style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background-color: #e8edf1;
+      color: #1b2b38;
+      line-height: 1.5;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    /* ---------- Side navigation ---------- */
+    nav {
+      background-color: #12324a;
+      color: #ffffff;
+      padding: 12px 16px;
+    }
+
+    nav .brand {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    nav a {
+      display: block;
+      padding: 6px 12px;
+      border-radius: 4px;
+      color: #cfdde8;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    nav a:hover {
+      background-color: #1d4764;
+    }
+
+    nav a.current {
+      background-color: #ffffff;
+      color: #12324a;
+      font-weight: 600;
+    }
+
+    /* ---------- Page content ---------- */
+    .content {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .page-title h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .page-title p {
+      margin: 4px 0 0 0;
+      color: #5a6e7c;
+    }
+
+    .notice {
+      padding: 10px 16px;
+      background-color: #fff4d6;
+      border: 1px solid #e6cf8a;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    .panel {
+      background-color: #ffffff;
+      border: 1px solid #c3cfd8;
+      border-radius: 6px;
+      padding: 16px;
+      min-width: 0;
+    }
+
+    .panel h2 {
+      margin: 0 0 4px 0;
+      font-size: 1.05rem;
+    }
+
+    .panel .hint {
+      margin: 0 0 12px 0;
+      font-size: 0.85rem;
+      color: #5a6e7c;
+    }
+
+    .ip {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.9rem;
+    }
+
+    .lower {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    /* ---------- Summary counts ---------- */
+    .summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .count {
+      background-color: #ffffff;
+      border: 1px solid #c3cfd8;
+      border-radius: 6px;
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .count strong {
+      font-size: 1.8rem;
+      line-height: 1.2;
+    }
+
+    .count span {
+      font-size: 0.85rem;
+      color: #5a6e7c;
+    }
+
+    .count.problem {
+      border-left: 6px solid #d24545;
+    }
+
+    .count.new {
+      border-left: 6px solid #e0a100;
+    }
+
+    /* ---------- Status dots and badges ---------- */
+    .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #8a9aa6;
+      flex-shrink: 0;
+    }
+
+    .dot.up { background-color: #34b36b; }
+    .dot.warn { background-color: #e0a100; }
+    .dot.down { background-color: #d24545; }
+
+    .badge {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 12px;
+      background-color: #dde5eb;
+      color: #3b4f5e;
+      white-space: nowrap;
+    }
+
+    .badge.pass { background-color: #d5f0e0; color: #17613a; }
+    .badge.warn { background-color: #fbecc2; color: #7a5600; }
+
+    /* ---------- Filter form ---------- */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .field-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    input[type="text"], select {
+      font: inherit;
+      padding: 8px 10px;
+      border: 1px solid #9fb0bd;
+      border-radius: 4px;
+      background-color: #ffffff;
+      color: #1b2b38;
+      width: 100%;
+    }
+
+    input:focus, select:focus, button:focus {
+      outline: 3px solid #7db5e0;
+      outline-offset: 1px;
+    }
+
+    button {
+      font: inherit;
+      font-weight: 600;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 4px;
+      background-color: #12324a;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1d4764;
+    }
+
+    button.secondary {
+      background-color: #ffffff;
+      color: #12324a;
+      border: 1px solid #12324a;
+    }
+
+    button.small {
+      padding: 4px 12px;
+      font-size: 0.85rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ---------- Table ---------- */
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      min-width: 720px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px 10px;
+      border-bottom: 1px solid #e3e9ee;
+    }
+
+    th {
+      background-color: #f1f5f8;
+      font-weight: 600;
+    }
+
+    tr.selected td {
+      background-color: #e8f1f8;
+    }
+
+    /* ---------- Detail lists ---------- */
+    .stat-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .stat-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid #e3e9ee;
+    }
+
+    .stat-list li:last-child {
+      border-bottom: none;
+    }
+
+    .stat-list span:first-child {
+      color: #5a6e7c;
+    }
+
+    .history {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .history li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.9rem;
+    }
+
+    .history .dot {
+      margin-top: 6px;
+    }
+
+    .history small {
+      display: block;
+      color: #5a6e7c;
+    }
+
+    /* ---------- New device card ---------- */
+    .unknown {
+      border-left: 6px solid #e0a100;
+      padding: 12px;
+      background-color: #f8fafb;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+
+    .unknown h3 {
+      margin: 0 0 4px 0;
+      font-size: 0.95rem;
+    }
+
+    .unknown p {
+      margin: 0 0 8px 0;
+      font-size: 0.85rem;
+      color: #5a6e7c;
+    }
+
+    button:disabled {
+      background-color: #8a9aa6;
+      border-color: #8a9aa6;
+      color: #ffffff;
+      cursor: wait;
+    }
+
+    select:disabled {
+      background-color: #f1f5f8;
+      color: #5a6e7c;
+    }
+
+    .check-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 400;
+    }
+
+    .check-line input {
+      width: 18px;
+      height: 18px;
+    }
+
+    footer {
+      padding: 8px 0;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #5a6e7c;
+    }
+
+    /* ---------- Tablet ---------- */
+    @media (min-width: 700px) {
+      .summary {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+
+      .field-row {
+        flex-direction: row;
+      }
+    }
+
+    /* ---------- Wide screens: side menu ---------- */
+    @media (min-width: 900px) {
+      body {
+        grid-template-columns: 220px 1fr;
+        min-height: 100vh;
+      }
+
+      nav {
+        padding: 20px 12px;
+      }
+
+      nav ul {
+        flex-direction: column;
+      }
+
+      .content {
+        padding: 24px;
+      }
+    }
+
+    /* ---------- Desktop: detail beside new devices ---------- */
+    @media (min-width: 1200px) {
+      .lower {
+        grid-template-columns: 3fr 2fr;
+        align-items: start;
+      }
+    }
+  
+.preview-banner{background:#0b1428;color:#d7e8ff;padding:12px 20px;font:14px/1.5 system-ui;position:relative;z-index:999}.preview-nav-label{display:block;padding:8px 12px}button:disabled,input:disabled,select:disabled{cursor:default}</style></head><body><div class="preview-banner">Kodigo portfolio / Device manager / Sample data only</div>
+
+  <nav>
+    <div class="brand">scrtncl</div>
+    <ul>
+      <li><span class="preview-nav-label">Overview</span></li>
+      <li><span class="preview-nav-label">Network Doctor</span></li>
+      <li><span class="preview-nav-label">Network Map</span></li>
+      <li><span class="preview-nav-label">Router Center</span></li>
+      <li><span class="preview-nav-label">Device Manager</span></li>
+      <li><span class="preview-nav-label">AI Technician</span></li>
+      <li><span class="preview-nav-label">Settings</span></li>
+      <li><span class="preview-nav-label">Help</span></li>
+    </ul>
+  </nav>
+
+  <div class="content">
+
+    <div class="page-title">
+      <h1>Device Manager</h1>
+      <p>Every device scrtncl has seen on your network, and how each one is doing.</p>
+    </div>
+
+    <div class="notice" id="notice">Static interface preview. All values are sample data; actions are disabled.</div>
+
+    
+    <div class="summary">
+      <div class="count">
+        <strong id="count-total">9</strong>
+        <span>Devices seen</span>
+      </div>
+      <div class="count">
+        <strong id="count-online">7</strong>
+        <span>Online now</span>
+      </div>
+      <div class="count problem">
+        <strong id="count-offline">1</strong>
+        <span>Offline</span>
+      </div>
+      <div class="count new">
+        <strong id="count-new">1</strong>
+        <span>New, not yet reviewed</span>
+      </div>
+    </div>
+
+    
+    <section class="panel">
+      <h2>Find a device</h2>
+      <p class="hint">Search by name, IP address, or MAC address</p>
+      <div class="preview-form">
+        <div class="field-row">
+          <div class="field">
+            <label for="search">Search</label>
+            <input disabled type="text" id="search" name="search" placeholder="Name, IP, or MAC">
+          </div>
+          <div class="field">
+            <label for="group">Group</label>
+            <select disabled id="group" name="group">
+              <option value="all">Any group</option>
+              <option value="none">No group</option>
+              <option value="Computers">Computers</option>
+              <option value="Phones and tablets">Phones and tablets</option>
+              <option value="Servers and storage">Servers and storage</option>
+              <option value="TVs and media">TVs and media</option>
+              <option value="Smart home (IoT)">Smart home (IoT)</option>
+              <option value="Guests">Guests</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="status">Status</label>
+            <select disabled id="status" name="status">
+              <option value="all">Any status</option>
+              <option value="online">Online</option>
+              <option value="offline">Offline</option>
+              <option value="new">New</option>
+            </select>
+          </div>
+        </div>
+        <div class="button-row">
+          <button disabled type="submit">Apply filters</button>
+          <button disabled type="reset" class="secondary">Clear</button>
+          <button disabled type="button" class="secondary" id="scan-button">Scan network</button>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="panel">
+      <h2>All devices</h2>
+      <p class="hint" id="table-hint">Sample devices. Select a device to see its details.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th>IP address</th>
+              <th>MAC address</th>
+              <th>Group</th>
+              <th>Last seen</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="device-body">
+            <tr class="selected">
+              <td>NAS</td>
+              <td>Storage</td>
+              <td class="ip">192.0.2.1</td>
+              <td class="ip">00:00:00:00:00:00</td>
+              <td>Servers</td>
+              <td>Now</td>
+              <td><span class="dot up"></span> Online</td>
+              <td><button disabled type="button" class="small">View</button></td>
+            </tr>
+            <tr>
+              <td>Proxmox host</td>
+              <td>Server</td>
+              <td class="ip">192.0.2.2</td>
+              <td class="ip">00:00:00:00:00:00</td>
+              <td>Servers</td>
+              <td>Now</td>
+              <td><span class="dot up"></span> Online</td>
+              <td><button disabled type="button" class="small secondary">View</button></td>
+            </tr>
+            <tr>
+              <td>Office printer</td>
+              <td>Printer</td>
+              <td class="ip">192.0.2.3</td>
+              <td class="ip">00:00:00:00:00:00</td>
+              <td>Front desk</td>
+              <td>Now</td>
+              <td><span class="dot warn"></span> Slow</td>
+              <td><button disabled type="button" class="small secondary">View</button></td>
+            </tr>
+            <tr>
+              <td>Reception PC</td>
+              <td>Computer</td>
+              <td class="ip">192.0.2.4</td>
+              <td class="ip">00:00:00:00:00:00</td>
+              <td>Front desk</td>
+              <td>Now</td>
+              <td><span class="dot up"></span> Online</td>
+              <td><button disabled type="button" class="small secondary">View</button></td>
+            </tr>
+            <tr>
+              <td>Dev laptop</td>
+              <td>Computer</td>
+              <td class="ip">192.0.2.5</td>
+              <td class="ip">00:00:00:00:00:00</td>
+              <td>Engineering</td>
+              <td>Now</td>
+              <td><span class="dot up"></span> Online</td>
+              <td><button disabled type="button" class="small secondary">View</button></td>
+            </tr>
+            <tr>
+              <td>IP camera</td>
+              <td>Camera</td>
+              <td class="ip">192.0.2.6</td>
+              <td class="ip">00:00:00:00:00:00</td>
+              <td>IoT</td>
+              <td>10 minutes ago</td>
+              <td><span class="dot down"></span> Offline</td>
+              <td><button disabled type="button" class="small secondary">View</button></td>
+            </tr>
+            <tr>
+              <td>Unknown device</td>
+              <td>Unknown</td>
+              <td class="ip">192.0.2.7</td>
+              <td class="ip">00:00:00:00:00:00</td>
+              <td>None</td>
+              <td>Now</td>
+              <td><span class="badge warn">New</span></td>
+              <td><button disabled type="button" class="small secondary">View</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="lower">
+
+      
+      <section class="panel">
+        <h2 id="detail-title">NAS</h2>
+        <p class="hint" id="detail-hint">Selected device</p>
+        <ul class="stat-list" id="detail-list">
+          <li><span>Status</span><span><span class="dot up"></span> Online</span></li>
+          <li><span>IP address</span><span class="ip">192.0.2.1</span></li>
+          <li><span>MAC address</span><span class="ip">00:00:00:00:00:00</span></li>
+          <li><span>Hostname</span><span class="ip">sample-device.example</span></li>
+          <li><span>Group</span><span>Servers</span></li>
+          <li><span>Response time</span><span>2 ms</span></li>
+          <li><span>First seen</span><span>6 months ago</span></li>
+        </ul>
+
+        <h2 style="margin-top: 16px;">Name and group</h2>
+        <p class="hint" id="edit-hint">Scan your network first. Then you can name a device and group it here.</p>
+        <div class="preview-form">
+          <div class="field">
+            <label for="edit-name">Your name for this device</label>
+            <input type="text" id="edit-name" name="edit-name" maxlength="40" placeholder="For example: Living room TV" disabled>
+          </div>
+          <div class="field">
+            <label for="edit-group">Group</label>
+            <select id="edit-group" name="edit-group" disabled>
+              <option value="">No group</option>
+              <option value="Computers">Computers</option>
+              <option value="Phones and tablets">Phones and tablets</option>
+              <option value="Servers and storage">Servers and storage</option>
+              <option value="TVs and media">TVs and media</option>
+              <option value="Smart home (IoT)">Smart home (IoT)</option>
+              <option value="Guests">Guests</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <label class="check-line" for="edit-known">
+            <input type="checkbox" id="edit-known" name="edit-known" disabled>
+            I know this device (stops it showing as new)
+          </label>
+          <div class="button-row">
+            <button type="submit" id="save-button" disabled>Save</button>
+            <button type="button" class="secondary" id="ping-button" disabled>Ping this device</button>
+          </div>
+        </div>
+        <p class="hint" id="edit-message" style="margin-top: 8px;"></p>
+
+        <h2 style="margin-top: 16px;">History</h2>
+        <p class="hint">What scrtncl has seen of this device</p>
+        <ul class="history" id="history-list">
+          <li>
+            <span class="dot up"></span>
+            <div>Came back online
+              <small>Yesterday, 07:12</small>
+            </div>
+          </li>
+          <li>
+            <span class="dot down"></span>
+            <div>Went offline for 2 hours
+              <small>Yesterday, 05:10</small>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      
+      <section class="panel">
+        <h2>New devices</h2>
+        <p class="hint" id="new-hint">Devices scrtncl has not seen before (sample)</p>
+        <div id="new-list">
+          <div class="unknown">
+            <h3>Unknown device</h3>
+            <p>
+              <span class="ip">192.0.2.7</span> &middot;
+              <span class="ip">00:00:00:00:00:00</span><br>
+              First seen 15 minutes ago on Wi-Fi 5 GHz
+            </p>
+          </div>
+        </div>
+        <p class="hint">Select a device in the table, then name it, group it, or mark it as known.</p>
+      </section>
+
+    </div>
+
+    <footer>
+      Use this tool only on networks and routers you own or have permission to manage.
+    </footer>
+
+  </div>
+
+  
+
+</body></html>

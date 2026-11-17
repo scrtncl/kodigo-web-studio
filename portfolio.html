@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kodigo Web Studio | Portfolio &amp; Sample Work</title>
+  <meta name="description" content="Explore scrtncl Network Doctor, an independent project by Carl Benedict C. Enriquez, alongside selected interface references.">
+  <meta name="theme-color" content="#060a14">
+
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link href="vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="page-load-indicator" aria-hidden="true"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-xl sticky-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img class="brand-symbol" src="images/kodigo-mark.svg" alt="" width="48" height="48"><span class="brand-wordmark">Kodigo<span>WEB STUDIO</span></span>
+    </a>
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navMenu"
+            aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="portfolio.html">Portfolio</a></li>
+        <li class="nav-item dropdown">
+          <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Business Proposal</button>
+          <ul class="dropdown-menu"><li><a class="dropdown-item" href="market.html">Target Market</a></li>
+<li><a class="dropdown-item" href="marketing.html">Marketing Strategy</a></li>
+<li><a class="dropdown-item" href="operations.html">Business Operations</a></li>
+<li><a class="dropdown-item" href="financial.html">Financial Proposal</a></li></ul>
+        </li>
+        <li class="nav-item"><a class="nav-link nav-contact" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<header class="page-hero" data-chapter="WORK">
+  <div class="container">
+    <p class="hero-eyebrow">Portfolio &nbsp;·&nbsp; Selected projects</p>
+    <h1>Sample Work</h1>
+    <p class="lead">My independent network project, alongside interface references that inform the way I think about useful websites.</p>
+  </div>
+</header>
+<nav class="chapter-nav" aria-label="Explore the proposal"><div class="container chapter-track"><a href="index.html"><span class="chapter-index">01/02</span>Overview</a>
+<a href="services.html"><span class="chapter-index">03</span>Services</a>
+<a href="portfolio.html" aria-current="page"><span class="chapter-index">WORK</span>Portfolio</a>
+<a href="market.html"><span class="chapter-index">04</span>Market</a>
+<a href="marketing.html"><span class="chapter-index">05</span>Marketing</a>
+<a href="operations.html"><span class="chapter-index">06</span>Operations</a>
+<a href="financial.html"><span class="chapter-index">07</span>Financials</a>
+<a href="contact.html"><span class="chapter-index">08</span>Contact</a></div></nav>
+
+<!-- MAIN CONTENT -->
+<main id="main-content" tabindex="-1">
+  <section id="work">
+    <div class="container">
+
+      <div class="section-header">
+        <h2>One independent build. Two design references.</h2>
+        <p class="intro">
+          I created scrtncl Network Doctor myself. The utility tracker and civic portal are included as interface references, not projects I built independently. Network Doctor is described from its local project source; the other entries are screenshot studies.
+        </p>
+      </div>
+
+      <div class="work-grid mt-4">
+
+        <!-- Project 1 -->
+        <figure class="work" id="network-dashboard">
+          <button type="button" class="work-img-wrap work-img-wrap--wide" data-image-stage aria-label="Enlarge scrtncl Network Doctor"
+               data-bs-toggle="modal"
+               data-bs-target="#portfolioModal"
+               data-img="images/work-network.png"
+               data-title="scrtncl Network Doctor"
+               data-desc="scrtncl Network Doctor combines a web dashboard with a local Python diagnostic engine. This screenshot shows the dashboard interface; it is not a live network report.">
+            <img loading="lazy" decoding="async" src="images/work-network.png"
+                 alt="Network Dashboard for small office and home lab"
+                 width="1024" height="600">
+            <span class="asset-status" hidden aria-hidden="true"></span>
+          </button>
+          <figcaption>
+            <span class="case-label">Independent build / Local network diagnostics</span>
+            <h3>scrtncl Network Doctor</h3>
+            <p class="project-credit">Designed and built independently by Carl Benedict C. Enriquez.</p>
+            <p class="case-audience">A troubleshooting workspace that connects a web dashboard to a local Python engine, bringing connection checks, device information, and diagnostic findings into one place.</p>
+            <dl class="project-meta"><div><dt>My role</dt><dd>Independent creator</dd></div><div><dt>Project type</dt><dd>Local diagnostic application</dd></div></dl>
+            <div class="tech-pills" aria-label="Project technologies"><span class="pill">Python</span><span class="pill">HTML / CSS</span><span class="pill">JavaScript</span><span class="pill">Local HTTP API</span></div>
+            <p class="note">Source code is private.</p>
+            <div class="project-actions"><a class="btn btn-accent" href="contact.html">Discuss a similar project</a></div>
+            <details class="project-story" open>
+              <summary>Inside the project</summary>
+              <div class="project-story-body">
+                <h4>The problem</h4><p>A slow or broken connection can have several causes. Separate readings are difficult to interpret without a clear sequence of checks and a useful next step.</p>
+                <h4>What I built</h4><p>The source separates the browser interface from the Python diagnostics. A local server connects the pages to checks, saved reports, device information, and monitoring history.</p>
+                <h4>From a question to a finding</h4>
+                <ol class="project-flow"><li><span>01</span><div><strong>Choose the check</strong><p>Full connection, local network, or DNS diagnosis.</p></div></li><li><span>02</span><div><strong>Collect the evidence</strong><p>Check local configuration, gateway reachability, DNS, and internet access according to the selected scope.</p></div></li><li><span>03</span><div><strong>Read the next step</strong><p>Review measured facts, a probable cause, what remains unverified, and a recommended action.</p></div></li></ol>
+                <h4>Beyond the dashboard</h4><p>The project also includes device management, connection history, speed testing, and a technician interface that draws on saved diagnostic data.</p>
+                <p class="note project-evidence">Based on the local project source. The screenshot is a preview; live diagnostics and performance claims have not been independently tested here.</p>
+              </div>
+            </details>
+          </figcaption>
+        </figure>
+
+        <!-- Project 2 -->
+        <figure class="work" id="utility-tracker">
+          <button type="button" class="work-img-wrap" data-image-stage aria-label="Enlarge Utility Bill Tracker App"
+               data-bs-toggle="modal"
+               data-bs-target="#portfolioModal"
+               data-img="images/work-electricity.png"
+               data-title="Utility Bill Tracker App"
+               data-desc="The screen brings consumption, a bill estimate, and a chat interface into one view. Screenshot preview; implementation details are not yet documented.">
+            <img loading="lazy" decoding="async" src="images/work-electricity.png"
+                 alt="AMI Smart Meter mobile app interface"
+                 width="430" height="790">
+            <span class="asset-status" hidden aria-hidden="true"></span>
+          </button>
+          <figcaption>
+            <span class="case-label">Interface reference / 02</span><h3>Utility Bill Tracker App</h3>
+
+            <p class="case-audience">For households reviewing their electricity use.</p>
+            <dl class="case-notes"><dt>01 / User need</dt><dd>Understand consumption without piecing together several screens.</dd><dt>02 / Visible features</dt><dd>Consumption figures, a bill estimate, and a chat area share a single mobile view.</dd><dt>03 / Design reading</dt><dd>Putting the estimate beside usage gives the numbers context. The separate chat area suggests a place for follow-up questions.</dd></dl>
+            <div class="case-takeaway"><strong>What this brings to Kodigo</strong><p>Clear pricing and concise explanations can help customers understand an offering before they inquire.</p></div>
+            <div class="tech-pills"><span class="pill">Bill overview</span><span class="pill">Mobile interface</span></div>
+          </figcaption>
+        </figure>
+
+        <!-- Project 3 -->
+        <figure class="work" id="civic-portal">
+          <button type="button" class="work-img-wrap" data-image-stage aria-label="Enlarge Civic Services Mobile Portal"
+               data-bs-toggle="modal"
+               data-bs-target="#portfolioModal"
+               data-img="images/work-govapp.jpg"
+               data-title="Civic Services Mobile Portal"
+               data-desc="The interface groups service shortcuts and information into distinct sections. Screenshot preview; implementation details are not yet documented.">
+            <img loading="lazy" decoding="async" src="images/work-govapp.jpg"
+                 alt="Civic government portal mobile application"
+                 width="430" height="790">
+            <span class="asset-status" hidden aria-hidden="true"></span>
+          </button>
+          <figcaption>
+            <span class="case-label">Interface reference / 03</span><h3>Civic Services Mobile Portal</h3>
+
+            <p class="case-audience">For people looking for public services on their phone.</p>
+            <dl class="case-notes"><dt>01 / User need</dt><dd>Find a relevant service among many options on a small screen.</dd><dt>02 / Visible features</dt><dd>Service shortcuts and supporting information are organized into distinct sections.</dd><dt>03 / Design reading</dt><dd>Grouping related destinations breaks a long list into smaller choices. Clear labels give each shortcut a purpose.</dd></dl>
+            <div class="case-takeaway"><strong>What this brings to Kodigo</strong><p>A business with several services can group its offerings so visitors can find a suitable starting point.</p></div>
+            <div class="tech-pills"><span class="pill">Service directory</span><span class="pill">Mobile navigation</span></div>
+          </figcaption>
+        </figure>
+
+      </div>
+
+<div class="project-gallery" aria-labelledby="galleryTitle"><div class="section-header"><span class="section-kicker">A closer look</span><h3 id="galleryTitle">Three views. One troubleshooting workspace.</h3><p class="intro">Static previews of the project interfaces with sample data. Controls are disabled; these previews do not run network checks.</p></div><div class="preview-grid"><article class="preview-card"><h4>Dashboard</h4><iframe src="previews/network-dashboard.html" title="Dashboard: static interface with sample data" loading="lazy" sandbox=""></iframe><p>Connection quality, history, and status in one overview.</p><a href="previews/network-dashboard.html" target="_blank" rel="noopener noreferrer">Open dashboard preview <span aria-hidden="true">&#8599;</span><span class="visually-hidden"> (opens in a new tab)</span></a></article><article class="preview-card"><h4>Diagnosis</h4><iframe src="previews/network-doctor.html" title="Diagnosis: static interface with sample data" loading="lazy" sandbox=""></iframe><p>Staged checks connect measured facts to a useful next step.</p><a href="previews/network-doctor.html" target="_blank" rel="noopener noreferrer">Open diagnosis preview <span aria-hidden="true">&#8599;</span><span class="visually-hidden"> (opens in a new tab)</span></a></article><article class="preview-card"><h4>Device manager</h4><iframe src="previews/device-manager.html" title="Device manager: static interface with sample data" loading="lazy" sandbox=""></iframe><p>A grouped inventory makes device status easier to scan.</p><a href="previews/device-manager.html" target="_blank" rel="noopener noreferrer">Open device manager preview <span aria-hidden="true">&#8599;</span><span class="visually-hidden"> (opens in a new tab)</span></a></article></div></div>
+      <!-- Skills demonstration banner -->
+      <div class="mt-5 p-4 rounded" style="background: var(--panel); border: 1px solid var(--line-cyan);">
+        <h3 class="mb-2">How these translate to your business website</h3>
+        <p style="color:var(--muted); line-height: 1.7;">
+          The same questions matter for a local business site: can a visitor find the price, understand the service, and know how to get in touch? These are the details I want to carry into Kodigo’s client work.
+        </p>
+        <div class="d-flex gap-3 flex-wrap mt-3">
+          <a href="services.html" class="btn btn-accent">View our website packages</a>
+          <a href="contact.html" class="btn btn-outline-light">Discuss a custom build</a>
+        </div>
+      </div>
+
+      <!-- Next Section Pagination Banner -->
+      <div class="next-section-banner mt-5">
+        <a class="previous-section" href="services.html">&larr; Services</a>
+        <div>
+          <span class="next-label">Next Section &bull; Target Market</span>
+          <h3 class="next-title">Who these websites are for</h3>
+        </div>
+        <a href="market.html" class="btn btn-accent btn-lg">View Target Market &rarr;</a>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- Lightbox Modal for Screenshots -->
+<div class="modal fade" id="portfolioModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content project-modal">
+      <div class="modal-header" style="border-bottom: 1px solid var(--line);">
+        <h3 class="modal-title fs-5 text-white" id="modalTitle">Project preview</h3>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center p-3">
+        <div class="image-stage modal-image-stage" data-image-stage>
+        <img id="modalImg" alt="Project detail inspection" class="img-fluid rounded mb-3" style="max-height: 70vh; object-fit: contain; border: 1px solid var(--line);">
+        <span class="asset-status" hidden role="status"></span>
+        </div>
+        <p id="modalDesc" class="text-muted text-start mb-0" style="font-size: 0.95rem; line-height: 1.6;"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-row">
+    <a class="footer-brand d-flex align-items-center" href="index.html"><img class="brand-symbol" src="images/kodigo-mark.svg" alt="" width="48" height="48"><span class="brand-wordmark">Kodigo<span>WEB STUDIO</span></span></a>
+    <span>&copy; <span id="year"></span> Kodigo Web Studio &bull; Carl Benedict C. Enriquez &mdash; BS Computer Science Business Proposal.</span>
+    <a href="#mainNav">Back to top &uarr;</a>
+  </div>
+</footer>
+
+<script defer src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
+<script defer src="script.js"></script>
+<script defer src="motion.js"></script>
+</body>
+</html>
