@@ -5,25 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kodigo Web Studio | Contact Information</title>
   <meta name="description" content="Get in touch with Carl Benedict C. Enriquez, founder of Kodigo Web Studio for web design inquiries, quotes, and consultations.">
-  <meta name="theme-color" content="#070913">
+  <meta name="theme-color" content="#060a14">
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23070913'/%3E%3Ctext x='32' y='44' font-size='28' text-anchor='middle' fill='%2300F0FF' font-family='monospace' font-weight='700'%3E%26lt%3B/%26gt%3B%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="page-load-indicator" aria-hidden="true"></div>
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-xl sticky-top" id="mainNav">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" href="index.html">
-      <span class="logo-mark" aria-hidden="true">&lt;/&gt;</span> Kodigo Web Studio
+      <img class="brand-symbol" src="images/kodigo-mark.svg" alt="" width="48" height="48"><span class="brand-wordmark">Kodigo<span>WEB STUDIO</span></span>
     </a>
     <button class="navbar-toggler" type="button"
             data-bs-toggle="collapse" data-bs-target="#navMenu"
@@ -50,33 +52,35 @@
 </nav>
 
 <!-- PAGE HERO -->
-<header class="page-hero">
+<header class="page-hero" data-chapter="08">
   <div class="container">
     <p class="hero-eyebrow">Section 8 &nbsp;·&nbsp; Communication Hub</p>
     <h1>Contact Information</h1>
-    <p class="lead">
-      Ready to discuss your business venture or request a free project estimate?
-      Email me directly or prepare an inquiry using the form below.
-    </p>
+    <p class="lead">Tell me what you have in mind. I can help you find a practical starting point for your website.</p>
   </div>
 </header>
+<nav class="chapter-nav" aria-label="Explore the proposal"><div class="container chapter-track"><a href="index.html"><span class="chapter-index">01/02</span>Overview</a>
+<a href="services.html"><span class="chapter-index">03</span>Services</a>
+<a href="portfolio.html"><span class="chapter-index">WORK</span>Portfolio</a>
+<a href="market.html"><span class="chapter-index">04</span>Market</a>
+<a href="marketing.html"><span class="chapter-index">05</span>Marketing</a>
+<a href="operations.html"><span class="chapter-index">06</span>Operations</a>
+<a href="financial.html"><span class="chapter-index">07</span>Financials</a>
+<a href="contact.html" aria-current="page"><span class="chapter-index">08</span>Contact</a></div></nav>
 
 <!-- MAIN CONTENT -->
-<main>
+<main id="main-content" tabindex="-1">
   <section id="contact">
     <div class="container">
 
-      <div class="section-header">
-        <h2>Get in Touch</h2>
-        <p class="intro">
-          I aim to reply within two working days, around my class schedule.
-        </p>
-      </div>
-
-      <div class="contact-grid mt-4">
+      <div class="contact-grid">
 
         <!-- Left: Official Channels -->
-        <div>
+        <div class="contact-channels">
+          <div class="contact-heading">
+            <h2>Get in Touch</h2>
+            <p class="intro">I aim to reply within two working days, around my class schedule.</p>
+          </div>
           <dl class="contact-info">
             <dt>Founder</dt>
             <dd class="text-white fw-bold">Carl Benedict C. Enriquez</dd>
@@ -115,7 +119,7 @@
         <!-- Right: Inquiry Form -->
         <div>
           <div class="p-4 rounded" style="background: var(--panel); border: 1px solid var(--line-cyan);">
-            <h3 class="h4 mb-3 text-white">Send a Project Inquiry</h3>
+            <h2 class="contact-panel-title">Send a Project Inquiry</h2>
             <p class="note">This form prepares a draft in your email app. You’ll need to send it there; this website does not submit or store your inquiry.</p>
             <form id="contactForm" novalidate>
               <div class="mb-3">
@@ -134,11 +138,13 @@
                 <label for="cPlan" class="form-label">Selected Website Package</label>
                 <select class="form-control form-select" id="cPlan">
                   <option value="general">General Consultation / Custom Project</option>
+                  <option value="undecided">I need help choosing a package</option>
                   <option value="starter">Starter Page (₱3,500) — 1 Page Landing</option>
                   <option value="business">Business Site (₱6,500) — Recommended</option>
                   <option value="premium">Premium Site (₱12,000) — Full Multi-Page</option>
                 </select>
               </div>
+
 
               <div class="mb-3">
                 <label for="cMessage" class="form-label">What kind of website or feature do you need?</label>
@@ -146,6 +152,15 @@
                 <div class="invalid-feedback" id="messageError">Please write at least 10 characters so I understand your request.</div>
                 <p class="note mt-2" id="messageHint">Changing packages updates the suggested introduction. Your own details are kept.</p>
               </div>
+
+              <details class="optional-project-details" id="optionalProjectDetails">
+                <summary>Add project details <span class="note">(optional)</span></summary>
+              <fieldset class="inquiry-details"><legend class="visually-hidden">Optional project details</legend><p class="note">Skip anything you have not decided yet.</p>
+                <div class="mb-3"><label for="cBusiness" class="form-label">Business type</label><input class="form-control" type="text" id="cBusiness" maxlength="100" placeholder="e.g. bakery, repair shop, student organization"></div>
+                <div class="mb-3"><label for="cLaunch" class="form-label">Preferred launch date</label><input class="form-control" type="date" id="cLaunch" aria-describedby="launchHint"><p class="note mt-2" id="launchHint">A preference, not a confirmed delivery date.</p></div>
+                <div class="mb-3"><label for="cFeatures" class="form-label">Required features</label><input class="form-control" type="text" id="cFeatures" maxlength="300" placeholder="e.g. menu, gallery, contact form, booking requests"></div>
+              </fieldset>
+              </details>
 
               <button type="submit" class="btn btn-accent btn-lg w-100">Prepare email draft</button>
               <button type="button" id="copyInquiry" class="btn btn-outline-light w-100 mt-2">Copy inquiry instead</button>
@@ -163,6 +178,7 @@
 
       <!-- Next Section Pagination Banner -->
       <div class="next-section-banner mt-5">
+        <a class="previous-section" href="financial.html">&larr; Financials</a>
         <div>
           <span class="next-label">Digital Business Proposal Completed</span>
           <h3 class="next-title">Read the story behind Kodigo</h3>
@@ -177,12 +193,14 @@
 <!-- FOOTER -->
 <footer>
   <div class="container footer-row">
+    <a class="footer-brand d-flex align-items-center" href="index.html"><img class="brand-symbol" src="images/kodigo-mark.svg" alt="" width="48" height="48"><span class="brand-wordmark">Kodigo<span>WEB STUDIO</span></span></a>
     <span>&copy; <span id="year"></span> Kodigo Web Studio &bull; Carl Benedict C. Enriquez &mdash; BS Computer Science Business Proposal.</span>
     <a href="#mainNav">Back to top &uarr;</a>
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
+<script defer src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
+<script defer src="script.js"></script>
+<script defer src="motion.js"></script>
 </body>
 </html>

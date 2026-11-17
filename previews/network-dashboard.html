@@ -1,0 +1,924 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; form-action 'none'; base-uri 'none'"><title>Dashboard - static sample preview</title><style>
+    fieldset {
+      border: 0;
+      margin: 0;
+      padding: 0;
+      min-width: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background-color: #e8edf1;
+      color: #1b2b38;
+      line-height: 1.5;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .content {
+      min-width: 0;
+    }
+
+    /* ---------- Side navigation ---------- */
+    nav {
+      background-color: #12324a;
+      color: #ffffff;
+      padding: 12px 16px;
+    }
+
+    nav .brand {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    nav a {
+      display: block;
+      padding: 6px 12px;
+      border-radius: 4px;
+      color: #cfdde8;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    nav a:hover {
+      background-color: #1d4764;
+    }
+
+    nav a.current {
+      background-color: #ffffff;
+      color: #12324a;
+      font-weight: 600;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      background-color: #12324a;
+      color: #ffffff;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    header p {
+      margin: 0;
+      color: #b9ccdb;
+      font-size: 0.9rem;
+    }
+
+    .header-status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #1d4764;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+
+    /* ---------- Status dots ---------- */
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #8a9aa6;
+      flex-shrink: 0;
+    }
+
+    .dot.up { background-color: #34b36b; }
+    .dot.warn { background-color: #e0a100; }
+    .dot.down { background-color: #d24545; }
+
+    /* ---------- Main layout (grid) ---------- */
+    main {
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .panel {
+      background-color: #ffffff;
+      border: 1px solid #c3cfd8;
+      border-radius: 6px;
+      padding: 16px;
+      min-width: 0;
+    }
+
+    .panel h2 {
+      margin: 0 0 4px 0;
+      font-size: 1.05rem;
+    }
+
+    .panel .hint {
+      margin: 0 0 12px 0;
+      font-size: 0.85rem;
+      color: #5a6e7c;
+    }
+
+    .ip {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.9rem;
+    }
+
+    /* ---------- Router status ---------- */
+    .stat-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .stat-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid #e3e9ee;
+    }
+
+    .stat-list li:last-child {
+      border-bottom: none;
+    }
+
+    .stat-list span:first-child {
+      color: #5a6e7c;
+    }
+
+    /* ---------- Bandwidth and latency bars ---------- */
+    .meter {
+      margin-bottom: 14px;
+    }
+
+    .meter-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+
+    .bar {
+      height: 12px;
+      background-color: #dde5eb;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background-color: #2b7bb9;
+    }
+
+    .bar-fill.warn {
+      background-color: #e0a100;
+    }
+
+    /* ---------- Alerts ---------- */
+    .alerts {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .alerts li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.9rem;
+    }
+
+    .alerts .dot {
+      margin-top: 6px;
+    }
+
+    .alerts small {
+      display: block;
+      color: #5a6e7c;
+    }
+
+    /* ---------- Device table ---------- */
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      min-width: 560px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px 10px;
+      border-bottom: 1px solid #e3e9ee;
+    }
+
+    th {
+      background-color: #f1f5f8;
+      font-weight: 600;
+    }
+
+    td.status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: none;
+    }
+
+    tr td.status {
+      min-height: 100%;
+    }
+
+    /* ---------- Forms ---------- */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .field-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    input, select, textarea {
+      font: inherit;
+      padding: 8px 10px;
+      border: 1px solid #9fb0bd;
+      border-radius: 4px;
+      background-color: #ffffff;
+      color: #1b2b38;
+      width: 100%;
+    }
+
+    textarea {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.9rem;
+      resize: vertical;
+    }
+
+    input:focus, select:focus, textarea:focus, button:focus {
+      outline: 3px solid #7db5e0;
+      outline-offset: 1px;
+    }
+
+    button {
+      font: inherit;
+      font-weight: 600;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 4px;
+      background-color: #12324a;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1d4764;
+    }
+
+    button.secondary {
+      background-color: #ffffff;
+      color: #12324a;
+      border: 1px solid #12324a;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .output {
+      margin-top: 12px;
+      padding: 10px;
+      background-color: #f1f5f8;
+      border: 1px dashed #9fb0bd;
+      border-radius: 4px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.85rem;
+      color: #5a6e7c;
+      min-height: 64px;
+    }
+
+    .notice {
+      padding: 10px 16px;
+      background-color: #fff4d6;
+      border-bottom: 1px solid #e6cf8a;
+      font-size: 0.85rem;
+    }
+
+    footer {
+      padding: 16px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #5a6e7c;
+    }
+
+    .history-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 12px;
+      margin-bottom: 8px;
+    }
+
+    .history-controls label {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .history-controls select {
+      width: auto;
+      font: inherit;
+      padding: 6px 10px;
+      border: 1px solid #9fb0bd;
+      border-radius: 4px;
+      background-color: #ffffff;
+      color: #1b2b38;
+    }
+
+    .uptime {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .panel h3 {
+      margin: 16px 0 6px 0;
+      font-size: 0.95rem;
+    }
+
+    .chart-box svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .legend {
+      list-style: none;
+      margin: 6px 0 0 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 16px;
+      font-size: 0.8rem;
+      color: #5a6e7c;
+    }
+
+    .legend li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .swatch {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+
+    td .dot {
+      display: inline-block;
+    }
+
+    .devices-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px 16px;
+      margin-top: 12px;
+      font-size: 0.9rem;
+    }
+
+    .auto-check {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: #5a6e7c;
+    }
+
+    .auto-check input {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ---------- Connection quality ---------- */
+    .badge {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 12px;
+      background-color: #dde5eb;
+      color: #3b4f5e;
+      white-space: nowrap;
+    }
+
+    .badge.excellent { background-color: #cdeedb; color: #0f5a30; }
+    .badge.good { background-color: #e2f1d3; color: #2f5a12; }
+    .badge.fair { background-color: #fbecc2; color: #7a5600; }
+    .badge.poor { background-color: #f8d9d9; color: #8a2222; }
+
+    .verdict {
+      border-left: 8px solid #9fb0bd;
+      background-color: #f1f5f8;
+      border-radius: 4px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+    }
+
+    .verdict strong {
+      display: block;
+      font-size: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .verdict span {
+      font-size: 0.95rem;
+    }
+
+    .verdict.excellent { border-left-color: #34b36b; }
+    .verdict.good { border-left-color: #7fbf4a; }
+    .verdict.fair { border-left-color: #e0a100; }
+    .verdict.poor { border-left-color: #d24545; }
+
+    .quality-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .quality-grid h3 {
+      margin: 0 0 4px 0;
+      font-size: 0.95rem;
+    }
+
+    .quality-notes {
+      margin: 12px 0 0 0;
+      padding-left: 20px;
+      font-size: 0.85rem;
+      color: #5a6e7c;
+    }
+
+    button:disabled {
+      background-color: #8a9aa6;
+      cursor: wait;
+    }
+
+    @media (min-width: 700px) {
+      .quality-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* ---------- Wide screens: side menu ---------- */
+    @media (min-width: 900px) {
+      body {
+        grid-template-columns: 220px 1fr;
+        min-height: 100vh;
+      }
+
+      nav {
+        padding: 20px 12px;
+      }
+
+      nav ul {
+        flex-direction: column;
+      }
+    }
+
+    /* ---------- Tablet: 2 columns ---------- */
+    @media (min-width: 700px) {
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 24px;
+      }
+
+      main {
+        grid-template-columns: 1fr 1fr;
+        padding: 24px;
+      }
+
+      .wide {
+        grid-column: 1 / -1;
+      }
+
+      .field-row {
+        flex-direction: row;
+      }
+    }
+
+    /* ---------- Desktop: 3 columns ---------- */
+    @media (min-width: 1400px) {
+      main {
+        grid-template-columns: 1fr 1fr 1fr;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .span-2 {
+        grid-column: span 2;
+      }
+    }
+  
+.preview-banner{background:#0b1428;color:#d7e8ff;padding:12px 20px;font:14px/1.5 system-ui;position:relative;z-index:999}.preview-nav-label{display:block;padding:8px 12px}button:disabled,input:disabled,select:disabled{cursor:default}</style></head><body><div class="preview-banner">Kodigo portfolio / Dashboard / Sample data only</div>
+
+  <nav>
+    <div class="brand">scrtncl</div>
+    <ul>
+      <li><span class="preview-nav-label">Overview</span></li>
+      <li><span class="preview-nav-label">Network Doctor</span></li>
+      <li><span class="preview-nav-label">Network Map</span></li>
+      <li><span class="preview-nav-label">Router Center</span></li>
+      <li><span class="preview-nav-label">Device Manager</span></li>
+      <li><span class="preview-nav-label">AI Technician</span></li>
+      <li><span class="preview-nav-label">Settings</span></li>
+      <li><span class="preview-nav-label">Help</span></li>
+    </ul>
+  </nav>
+
+  <div class="content">
+
+  <header>
+    <div>
+      <h1>Network Dashboard</h1>
+      <p>Home lab and small office view</p>
+    </div>
+    <div class="header-status">
+      <div class="pill"><span class="dot up" id="dot-router"></span><span id="text-router">Router online</span></div>
+      <div class="pill"><span class="dot up" id="dot-internet"></span><span id="text-internet">Internet connected</span></div>
+      <div class="pill"><span class="dot warn" id="dot-issues"></span><span id="text-issues">2 alerts</span></div>
+      <div class="pill"><span class="dot" id="dot-age"></span><span id="text-age">Not checked yet</span></div>
+    </div>
+  </header>
+
+  <div class="notice" id="notice">Static interface preview. All values are sample data; actions are disabled.</div>
+
+  <main>
+
+    
+    <section class="panel wide">
+      <h2>Connection quality</h2>
+      <p class="hint" id="quality-hint">Press Check now and Run speed test to rate your connection. The ratings are rules of thumb for home and small office use.</p>
+      <div class="verdict" id="quality-verdict">
+        <strong id="quality-label">Not rated yet</strong>
+        <span id="quality-summary">Sample data below. Run the checks to see how your connection really does.</span>
+      </div>
+      <div class="quality-grid">
+        <div>
+          <h3>What was rated</h3>
+          <ul class="stat-list" id="quality-items">
+            <li><span>Download speed</span><span>212 Mbps <span class="badge excellent">Excellent</span></span></li>
+            <li><span>Delay to the internet</span><span>24 ms <span class="badge excellent">Excellent</span></span></li>
+            <li><span>DNS lookups</span><span>14 ms <span class="badge excellent">Excellent</span></span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Good enough for</h3>
+          <ul class="stat-list" id="quality-uses">
+            <li><span>Web browsing</span><span class="badge good">Fine</span></li>
+            <li><span>HD streaming (1080p)</span><span class="badge good">Fine</span></li>
+          </ul>
+        </div>
+      </div>
+      <ul class="quality-notes" id="quality-notes"></ul>
+    </section>
+
+    
+    <section class="panel wide">
+      <h2>History</h2>
+      <p class="hint" id="history-hint">No history yet. While the server runs, it records a light check every 5 minutes. Leave it running for a while.</p>
+
+      <div class="history-controls">
+        <label for="history-range">Show</label>
+        <select disabled id="history-range">
+          <option value="1">Last hour</option>
+          <option value="6">Last 6 hours</option>
+          <option value="24" selected>Last 24 hours</option>
+          <option value="168">Last 7 days</option>
+        </select>
+        <span class="uptime" id="uptime-text"></span>
+      </div>
+
+      <h3>Internet availability</h3>
+      <div id="avail-chart" class="chart-box"></div>
+      <ul class="legend">
+        <li><span class="swatch" style="background-color: #34b36b;"></span> Online</li>
+        <li><span class="swatch" style="background-color: #e0a100;"></span> Router answers, no internet</li>
+        <li><span class="swatch" style="background-color: #d24545;"></span> Nothing answers</li>
+        <li><span class="swatch" style="background-color: #dde5eb;"></span> Not recorded</li>
+      </ul>
+
+      <h3>Delay</h3>
+      <div id="delay-chart" class="chart-box"></div>
+      <ul class="legend">
+        <li><span class="swatch" style="background-color: #34b36b;"></span> Router</li>
+        <li><span class="swatch" style="background-color: #12324a;"></span> Internet</li>
+        <li><span class="swatch" style="background-color: #8a5bb8;"></span> DNS lookup</li>
+      </ul>
+
+      <h3>Events</h3>
+      <ul class="alerts" id="event-list">
+        <li><span class="dot"></span><div>No events yet<small>Changes such as lost connections will be listed here.</small></div></li>
+      </ul>
+    </section>
+
+    
+    <section class="panel">
+      <h2>Router</h2>
+      <p class="hint" id="router-hint">Main gateway (not checked yet)</p>
+      <ul class="stat-list">
+        <li><span>Address</span><span class="ip" id="router-address">192.0.2.1</span></li>
+        <li><span>Model</span><span>Needs router login</span></li>
+        <li><span>Firmware</span><span>Needs router login</span></li>
+        <li><span>Uptime</span><span>Needs router login</span></li>
+        <li><span>CPU load</span><span>Needs router login</span></li>
+        <li><span>Connected devices</span><span id="connected-count">Run a scan</span></li>
+      </ul>
+    </section>
+
+    
+    <section class="panel">
+      <h2>Bandwidth</h2>
+      <p class="hint" id="speed-hint">Sample data. Press Run speed test to measure your connection. A test uses about 50 MB of data.</p>
+
+      <div class="meter">
+        <div class="meter-top"><span>Download</span><span id="speed-down">212 Mbps</span></div>
+        <div class="bar"><div class="bar-fill" id="bar-down" style="width: 21%;"></div></div>
+      </div>
+
+      <div class="meter">
+        <div class="meter-top"><span>Upload</span><span id="speed-up">38 Mbps</span></div>
+        <div class="bar"><div class="bar-fill" id="bar-up" style="width: 4%;"></div></div>
+      </div>
+
+      <div class="meter">
+        <div class="meter-top"><span>Delay under load</span><span id="speed-load">48 ms</span></div>
+        <div class="bar"><div class="bar-fill" id="bar-load" style="width: 10%;"></div></div>
+      </div>
+
+      <p class="hint" id="speed-notes" style="margin: 0 0 12px 0;"></p>
+      <button disabled type="button" id="speed-button">Run speed test</button>
+    </section>
+
+    
+    <section class="panel">
+      <h2>Latency</h2>
+      <p class="hint" id="latency-hint">Sample data</p>
+
+      <div class="meter">
+        <div class="meter-top"><span>Router</span><span id="lat-router">1 ms</span></div>
+        <div class="bar"><div class="bar-fill" id="bar-router" style="width: 2%;"></div></div>
+      </div>
+
+      <div class="meter">
+        <div class="meter-top"><span>DNS lookup</span><span id="lat-dns">14 ms</span></div>
+        <div class="bar"><div class="bar-fill" id="bar-dns" style="width: 14%;"></div></div>
+      </div>
+
+      <div class="meter">
+        <div class="meter-top"><span>Public website</span><span id="lat-web">48 ms</span></div>
+        <div class="bar"><div class="bar-fill" id="bar-web" style="width: 48%;"></div></div>
+      </div>
+
+      <button disabled type="button" id="check-button" style="margin-top: 4px;">Check now</button>
+      <label class="auto-check" for="auto-check">
+        <input disabled type="checkbox" id="auto-check" checked>
+        Check automatically every minute while this page is open
+      </label>
+    </section>
+
+    
+    <section class="panel">
+      <h2>Wi-Fi link</h2>
+      <p class="hint" id="wifi-hint">Sample data. Press Check now to read this computer's Wi-Fi.</p>
+      <ul class="stat-list" id="wifi-list">
+        <li><span>Network</span><span>HomeNet</span></li>
+        <li><span>Signal</span><span>82% (about -59 dBm), good</span></li>
+        <li><span>Link speed</span><span>433 Mbps down, 390 Mbps up</span></li>
+        <li><span>Band and channel</span><span>5 GHz, channel 36</span></li>
+        <li><span>Standard</span><span>802.11ac (Wi-Fi 5)</span></li>
+      </ul>
+      <p class="hint" style="margin: 12px 0 0 0;">Link speed is how fast your computer and the Wi-Fi device talk to each other. It is not your internet speed.</p>
+    </section>
+
+    
+    <section class="panel wide span-2">
+      <h2>Devices</h2>
+      <p class="hint" id="devices-hint">Sample devices. Press Scan network to find the real ones.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>IP address</th>
+              <th>MAC address</th>
+              <th>Group</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="device-body">
+            <tr>
+              <td>NAS</td>
+              <td class="ip">192.0.2.2</td>
+              <td class="ip">00:00:00:00:00:00</td>
+              <td>Servers</td>
+              <td><span class="dot up"></span> Online</td>
+            </tr>
+            <tr>
+              <td>Proxmox host</td>
+              <td class="ip">192.0.2.3</td>
+              <td class="ip">00:00:00:00:00:00</td>
+              <td>Servers</td>
+              <td><span class="dot up"></span> Online</td>
+            </tr>
+            <tr>
+              <td>Office printer</td>
+              <td class="ip">192.0.2.4</td>
+              <td class="ip">00:00:00:00:00:00</td>
+              <td>Front desk</td>
+              <td><span class="dot warn"></span> Slow</td>
+            </tr>
+            <tr>
+              <td>Reception PC</td>
+              <td class="ip">192.0.2.5</td>
+              <td class="ip">00:00:00:00:00:00</td>
+              <td>Front desk</td>
+              <td><span class="dot up"></span> Online</td>
+            </tr>
+            <tr>
+              <td>Dev laptop</td>
+              <td class="ip">192.0.2.6</td>
+              <td class="ip">00:00:00:00:00:00</td>
+              <td>Engineering</td>
+              <td><span class="dot up"></span> Online</td>
+            </tr>
+            <tr>
+              <td>IP camera</td>
+              <td class="ip">192.0.2.7</td>
+              <td class="ip">00:00:00:00:00:00</td>
+              <td>IoT</td>
+              <td><span class="dot down"></span> Offline</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="devices-actions">
+        <button disabled type="button" id="scan-button">Scan network</button>
+        <span class="preview-nav-label">See every device in Device Manager</span>
+      </div>
+    </section>
+
+    
+    <section class="panel">
+      <h2>Alerts</h2>
+      <p class="hint" id="alerts-hint">Sample alerts. Live ones appear after a check or scan.</p>
+      <ul class="alerts" id="alerts-list">
+        <li>
+          <span class="dot down"></span>
+          <div>IP camera stopped responding
+            <small>192.0.2.7 &middot; 10 minutes ago</small>
+          </div>
+        </li>
+        <li>
+          <span class="dot warn"></span>
+          <div>Packet loss above 1%
+            <small>Internet connection &middot; 25 minutes ago</small>
+          </div>
+        </li>
+        <li>
+          <span class="dot up"></span>
+          <div>Router firmware check passed
+            <small>192.0.2.1 &middot; this morning</small>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    
+    <section class="panel">
+      <h2>Ping and traceroute</h2>
+      <p class="hint" id="ping-hint">Type a host or IP and press Run test.</p>
+      <div class="preview-form">
+        <div class="field">
+          <label for="ping-host">Host or IP address</label>
+          <input disabled type="text" id="ping-host" name="host" placeholder="192.0.2.2 or example.com" required>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="ping-tool">Tool</label>
+            <select disabled id="ping-tool" name="tool">
+              <option value="ping">Ping</option>
+              <option value="traceroute">Traceroute</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="ping-count">Packets</label>
+            <input disabled type="number" id="ping-count" name="count" value="4" min="1" max="20">
+          </div>
+        </div>
+        <div class="button-row">
+          <button disabled type="submit" id="ping-run">Run test</button>
+          <button disabled type="reset" class="secondary">Clear</button>
+        </div>
+      </div>
+      <div class="output" id="ping-output"></div>
+    </section>
+
+    
+    <section class="panel">
+      <h2>Port scan</h2>
+      <p class="hint" id="portscan-hint">Only scan devices you own or manage. Private addresses only.</p>
+      <div class="preview-form">
+        <div class="field">
+          <label for="scan-host">Host or IP address</label>
+          <input disabled type="text" id="scan-host" name="host" placeholder="192.0.2.3" required>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="scan-start">First port</label>
+            <input disabled type="number" id="scan-start" name="start" value="1" min="1" max="65535">
+          </div>
+          <div class="field">
+            <label for="scan-end">Last port</label>
+            <input disabled type="number" id="scan-end" name="end" value="1024" min="1" max="65535">
+          </div>
+        </div>
+        <div class="field">
+          <label for="scan-type">Scan type</label>
+          <select disabled id="scan-type" name="type">
+            <option value="tcp">TCP</option>
+            <option value="udp">UDP (not supported)</option>
+          </select>
+        </div>
+        <div class="button-row">
+          <button disabled type="submit" id="portscan-run">Start scan</button>
+          <button disabled type="reset" class="secondary">Clear</button>
+        </div>
+      </div>
+      <div class="output" id="portscan-output"></div>
+    </section>
+
+    
+    <section class="panel wide span-2">
+      <h2>Router access</h2>
+      <p class="hint">Not built yet</p>
+      <p>Logging in to a router is a later feature. When it is built, it will be read-only: scrtncl will look at your router but not change it, and your router password will stay on this computer. Until then, there is nothing to type here.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    Use this tool only on networks and routers you own or have permission to manage.
+  </footer>
+
+  </div>
+
+  
+
+</body></html>

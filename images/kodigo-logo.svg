@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 88" width="360" height="88" fill="none" role="img" aria-labelledby="logoTitle logoDesc">
+  <title id="logoTitle">Kodigo Web Studio</title>
+  <desc id="logoDesc">Kodigo Web Studio wordmark with an angular K built from a code chevron and an violet connection point.</desc>
+  <g transform="translate(8 12)">
+    <path d="M15 3H48L61 16V49L49 61H16L3 48V15L15 3Z" fill="#060a14" stroke="#35565d" stroke-width="1.5"/>
+    <path d="M17 14H23V50H17V14Z" fill="#e8f0f1"/>
+    <path d="M47 16L31 32L47 48" stroke="#55e7ff" stroke-width="6" stroke-linejoin="miter"/>
+    <path d="M23 32H31" stroke="#a08cff" stroke-width="3"/>
+    <path d="M31 28L35 32L31 36L27 32L31 28Z" fill="#a08cff"/>
+    <path d="M45 3H48L61 16V19" stroke="#55e7ff" stroke-width="1.5"/>
+  </g>
+  <text x="88" y="48" fill="#e8f0f1" font-family="'Space Grotesk', 'Arial', sans-serif" font-size="38" font-weight="600" letter-spacing="-1.7">Kodigo</text>
+  <text x="90" y="68" fill="#a4b7c4" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="10" font-weight="500" letter-spacing="3.2">WEB STUDIO</text>
+  <path d="M268 29H318M268 38H299" stroke="#35565d" stroke-width="1"/>
+  <path d="M318 26L321 29L318 32L315 29L318 26Z" fill="#a08cff"/>
+</svg>

@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="650" viewBox="0 0 780 650" fill="none" role="img" aria-labelledby="hologramTitle hologramDesc">
+  <title id="hologramTitle">A business website, built for the next step</title>
+  <desc id="hologramDesc">A layered holographic browser and mobile interface float above a perspective blueprint grid. Cyan circuits connect a business website with its phone layout. Design, develop, and deploy mark the studio's process. This is a website concept illustration, without real performance metrics.</desc>
+  <defs>
+    <linearGradient id="holoGround" x1="80" y1="0" x2="710" y2="650" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0b142b"/><stop offset=".55" stop-color="#060a14"/><stop offset="1" stop-color="#10112b"/>
+    </linearGradient>
+    <linearGradient id="holoGlass" x1="120" y1="110" x2="620" y2="490" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#182b4b" stop-opacity=".97"/><stop offset=".5" stop-color="#0b172c" stop-opacity=".96"/><stop offset="1" stop-color="#171534" stop-opacity=".98"/>
+    </linearGradient>
+    <linearGradient id="holoEdge" x1="130" y1="130" x2="640" y2="490" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#55e7ff"/><stop offset=".5" stop-color="#55e7ff" stop-opacity=".25"/><stop offset="1" stop-color="#a08cff"/>
+    </linearGradient>
+    <linearGradient id="holoSignal" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#55e7ff"/><stop offset="1" stop-color="#a08cff"/>
+    </linearGradient>
+    <radialGradient id="holoAura"><stop stop-color="#2289be" stop-opacity=".3"/><stop offset="1" stop-color="#2289be" stop-opacity="0"/></radialGradient>
+    <radialGradient id="holoViolet"><stop stop-color="#8875e8" stop-opacity=".22"/><stop offset="1" stop-color="#8875e8" stop-opacity="0"/></radialGradient>
+    <filter id="holoGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3" result="halo"/><feMerge><feMergeNode in="halo"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="holoShadow" x="-35%" y="-35%" width="180%" height="200%">
+      <feDropShadow dx="0" dy="25" stdDeviation="18" flood-color="#00030b" flood-opacity=".8"/>
+    </filter>
+    <pattern id="holoDots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".7" fill="#7a9cb9" fill-opacity=".18"/></pattern>
+  </defs>
+
+  <rect x="1" y="1" width="778" height="648" rx="24" fill="url(#holoGround)" stroke="#43627e" stroke-opacity=".3"/>
+  <rect x="1" y="1" width="778" height="648" rx="24" fill="url(#holoDots)"/>
+  <ellipse cx="346" cy="285" rx="330" ry="280" fill="url(#holoAura)"/>
+  <ellipse cx="632" cy="431" rx="215" ry="212" fill="url(#holoViolet)"/>
+
+  <!-- Orbit lines frame the architecture without implying measured activity. -->
+  <g stroke="#55e7ff" stroke-opacity=".13">
+    <ellipse cx="390" cy="325" rx="350" ry="237" transform="rotate(-19 390 325)"/>
+    <ellipse cx="390" cy="325" rx="350" ry="237" transform="rotate(24 390 325)"/>
+    <path d="M76 293C68 166 192 67 370 56M430 591C618 584 748 478 715 331" stroke-dasharray="4 10"/>
+  </g>
+  <g fill="#55e7ff" filter="url(#holoGlow)"><circle cx="76" cy="293" r="3"/><circle cx="665" cy="167" r="3"/></g>
+  <g stroke="#55e7ff" stroke-width="1.4" stroke-opacity=".7">
+    <path d="M26 65V26H65M715 26H754V65M26 585V624H65M715 624H754V585"/>
+  </g>
+  <path d="M45 45H105M45 45V105M735 605H675M735 605V545" stroke="#55e7ff" stroke-opacity=".15"/>
+  <text x="50" y="72" font-family="'Courier New',monospace" font-size="12" letter-spacing="2.2" fill="#8eacc3">KODIGO / WEB ARCHITECTURE</text>
+  <g transform="translate(607 57)"><circle cx="0" cy="9" r="3" fill="#55e7ff"/><text x="13" y="13" font-family="'Courier New',monospace" font-size="11" letter-spacing="1" fill="#a9c7dc">CONCEPT</text></g>
+
+  <!-- Perspective drafting plane. -->
+  <path d="M70 481L445 369L724 485L350 608Z" fill="#0b2037" fill-opacity=".52" stroke="#55e7ff" stroke-opacity=".3"/>
+  <g stroke="#55e7ff" stroke-opacity=".12">
+    <path d="M117 467L397 593M164 453L444 578M211 439L491 562M258 425L538 547M305 411L585 531M352 397L632 516M399 383L679 501"/>
+    <path d="M110 499L484 385M150 517L524 402M190 535L564 418M230 553L604 435M270 571L644 451M310 589L684 468"/>
+  </g>
+  <path d="M70 481L350 608L724 485" stroke="url(#holoSignal)" stroke-opacity=".55"/>
+  <path d="M81 493L350 615L713 497" stroke="#55e7ff" stroke-opacity=".12"/>
+
+  <!-- Rear layout layers add depth to the browser. -->
+  <g transform="rotate(-7 390 295)">
+    <rect x="111" y="142" width="542" height="338" rx="14" fill="#0c1a33" fill-opacity=".35" stroke="#a08cff" stroke-opacity=".25"/>
+    <rect x="120" y="128" width="542" height="338" rx="14" fill="#0c1a33" fill-opacity=".5" stroke="#55e7ff" stroke-opacity=".3"/>
+  </g>
+  <g transform="rotate(-7 390 295)" filter="url(#holoShadow)">
+    <rect x="129" y="114" width="542" height="338" rx="13" fill="url(#holoGlass)" stroke="url(#holoEdge)" stroke-width="1.5"/>
+    <rect x="135" y="120" width="530" height="326" rx="9" stroke="#a3f3ff" stroke-opacity=".07"/>
+    <path d="M129 152H671" stroke="#55e7ff" stroke-opacity=".19"/>
+    <g fill="#55e7ff"><circle cx="150" cy="133" r="3"/><circle cx="163" cy="133" r="3" fill-opacity=".5"/><circle cx="176" cy="133" r="3" fill-opacity=".25"/></g>
+    <text x="200" y="137" fill="#b9cfdf" font-family="'Courier New',monospace" font-size="11" letter-spacing="1.3">WEBSITE CONCEPT</text>
+    <path d="M634 128L629 133L634 138M645 128L650 133L645 138" stroke="#55e7ff" stroke-width="1.3"/>
+
+    <g font-family="Arial,Helvetica,sans-serif">
+      <text x="153" y="184" fill="#f0f6ff" font-size="16" font-weight="700" letter-spacing=".5">YOUR BUSINESS</text>
+      <text x="462" y="182" fill="#9eb6cd" font-size="11">Menu</text>
+      <text x="513" y="182" fill="#9eb6cd" font-size="11">Services</text>
+      <text x="582" y="182" fill="#9eb6cd" font-size="11">Contact</text>
+      <path d="M153 201H646" stroke="#3c546d" stroke-opacity=".5"/>
+      <text x="153" y="236" fill="#55e7ff" font-size="10" letter-spacing="2">LOCAL BUSINESS. DIGITAL POSSIBILITIES.</text>
+      <text x="153" y="271" fill="#f0f6ff" font-size="29" font-weight="700" letter-spacing="-1">A clearer way</text>
+      <text x="153" y="305" fill="#f0f6ff" font-size="29" font-weight="700" letter-spacing="-1">to connect.</text>
+      <text x="153" y="329" fill="#9eb6cd" font-size="12">Your services. Your story. One place.</text>
+      <rect x="153" y="346" width="120" height="31" rx="4" fill="#55e7ff"/>
+      <text x="168" y="366" fill="#071323" font-size="11" font-weight="700">Explore services</text>
+      <path d="M254 357L259 361L254 365" stroke="#071323" stroke-width="1.5"/>
+    </g>
+
+    <!-- Abstract dimensional mark: a website assembled from connected layers. -->
+    <g transform="translate(538 287)">
+      <circle r="69" stroke="#55e7ff" stroke-opacity=".15"/>
+      <circle r="81" stroke="#a08cff" stroke-opacity=".22" stroke-dasharray="3 7"/>
+      <ellipse rx="87" ry="26" transform="rotate(-31)" stroke="#55e7ff" stroke-opacity=".5"/>
+      <path d="M0-55L48-27V28L0 56L-48 28V-27Z" fill="#203754" fill-opacity=".7" stroke="#55e7ff" stroke-opacity=".6"/>
+      <path d="M0-55V0M-48-27L0 0L48-27M0 0V56M-48 28L0 0L48 28" stroke="#55e7ff" stroke-opacity=".5"/>
+      <path d="M0-33L29-16V17L0 34L-29 17V-16Z" fill="#55e7ff" fill-opacity=".08" stroke="#a08cff"/>
+      <path d="M-17-10L-27 0L-17 10M17-10L27 0L17 10M7-17L-7 17" stroke="#e7faff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" filter="url(#holoGlow)"/>
+      <circle cx="-76" cy="43" r="3" fill="#a08cff"/>
+      <circle cx="76" cy="-43" r="3" fill="#55e7ff" filter="url(#holoGlow)"/>
+    </g>
+
+    <g font-family="'Courier New',monospace" font-size="10" fill="#a7c4d6">
+      <rect x="153" y="401" width="147" height="28" rx="3" stroke="#55e7ff" stroke-opacity=".22"/>
+      <text x="166" y="419">01 / CLEAR CONTENT</text>
+      <rect x="312" y="401" width="147" height="28" rx="3" stroke="#55e7ff" stroke-opacity=".22"/>
+      <text x="325" y="419">02 / EASY TO USE</text>
+      <rect x="471" y="401" width="175" height="28" rx="3" stroke="#a08cff" stroke-opacity=".3"/>
+      <text x="484" y="419">03 / BUILT TO CONNECT</text>
+    </g>
+  </g>
+
+  <!-- Light traces connect the desktop concept to its responsive view. -->
+  <path d="M203 469V514L250 540H469L503 507H543" stroke="#55e7ff" stroke-opacity=".5" stroke-width="1.5"/>
+  <path d="M210 475V509L254 533H462L494 501H537" stroke="#55e7ff" stroke-opacity=".12"/>
+  <circle cx="203" cy="469" r="4" fill="#08121b" stroke="#55e7ff"/>
+  <circle cx="469" cy="540" r="3" fill="#55e7ff" filter="url(#holoGlow)"/>
+
+  <!-- Mobile interface with generous labels, no invented data. -->
+  <g transform="rotate(9 626 460)" filter="url(#holoShadow)">
+    <rect x="551" y="324" width="155" height="274" rx="23" fill="#080e1e" stroke="url(#holoSignal)" stroke-width="1.5"/>
+    <rect x="558" y="331" width="141" height="260" rx="17" fill="#111e33" stroke="#334460"/>
+    <rect x="608" y="338" width="42" height="7" rx="3.5" fill="#060a14"/>
+    <g font-family="Arial,Helvetica,sans-serif">
+      <text x="570" y="370" fill="#eef6ff" font-size="10" font-weight="700">YOUR BUSINESS</text>
+      <path d="M679 360H687M679 365H687M679 370H687" stroke="#55e7ff" stroke-width="1.2"/>
+      <path d="M570 382H687" stroke="#55e7ff" stroke-opacity=".2"/>
+      <text x="570" y="408" fill="#edf5ff" font-size="19" font-weight="700" letter-spacing="-.5">Made for</text>
+      <text x="570" y="431" fill="#55e7ff" font-size="19" font-weight="700" letter-spacing="-.5">your next step.</text>
+      <rect x="570" y="447" width="116" height="39" rx="5" fill="#1a2e45" stroke="#55e7ff" stroke-opacity=".2"/>
+      <path d="M580 458H594V475H580ZM583 462H591M583 466H591" stroke="#55e7ff" stroke-width="1.2"/>
+      <text x="603" y="471" fill="#c8d9e9" font-size="11">Our services</text>
+      <rect x="570" y="494" width="116" height="39" rx="5" fill="#1c253e" stroke="#a08cff" stroke-opacity=".25"/>
+      <path d="M580 506H594V517H580ZM580 506L587 512L594 506" stroke="#a08cff" stroke-width="1.2"/>
+      <text x="603" y="518" fill="#c8d9e9" font-size="11">Get in touch</text>
+      <rect x="570" y="546" width="116" height="27" rx="4" fill="#55e7ff"/>
+      <text x="591" y="564" fill="#081323" font-size="10" font-weight="700">Start a conversation</text>
+    </g>
+    <rect x="610" y="581" width="38" height="3" rx="1.5" fill="#526b85"/>
+  </g>
+
+  <g font-family="'Courier New',monospace" font-size="13" letter-spacing="1.6">
+    <text x="70" y="583" fill="#55e7ff">DESIGN</text>
+    <text x="217" y="583" fill="#c0d7e9">DEVELOP</text>
+    <text x="379" y="583" fill="#a08cff">DEPLOY</text>
+  </g>
+  <path d="M145 578H191M172 574L178 578L172 582M306 578H353M334 574L340 578L334 582" stroke="#4f758f"/>
+  <text x="70" y="605" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#7f9bb3">From an idea to a place your customers can find.</text>
+</svg>

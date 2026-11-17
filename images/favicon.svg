@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <title>Kodigo Web Studio</title>
+  <path d="M15 3H48L61 16V49L49 61H16L3 48V15L15 3Z" fill="#060a14" stroke="#35565d" stroke-width="2"/>
+  <path d="M17 14H23V50H17V14Z" fill="#e8f0f1"/>
+  <path d="M47 16L31 32L47 48" stroke="#55e7ff" stroke-width="6" stroke-linejoin="miter"/>
+  <path d="M23 32H31" stroke="#a08cff" stroke-width="3"/>
+  <path d="M31 28L35 32L31 36L27 32L31 28Z" fill="#a08cff"/>
+</svg>

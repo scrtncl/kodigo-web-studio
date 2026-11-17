@@ -5,25 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kodigo Web Studio | Products &amp; Services</title>
   <meta name="description" content="Affordable, mobile-friendly web design packages for small local businesses and student groups. Founder: Carl Benedict C. Enriquez.">
-  <meta name="theme-color" content="#070913">
+  <meta name="theme-color" content="#060a14">
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23070913'/%3E%3Ctext x='32' y='44' font-size='28' text-anchor='middle' fill='%2300F0FF' font-family='monospace' font-weight='700'%3E%26lt%3B/%26gt%3B%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="page-load-indicator" aria-hidden="true"></div>
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-xl sticky-top" id="mainNav">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" href="index.html">
-      <span class="logo-mark" aria-hidden="true">&lt;/&gt;</span> Kodigo Web Studio
+      <img class="brand-symbol" src="images/kodigo-mark.svg" alt="" width="48" height="48"><span class="brand-wordmark">Kodigo<span>WEB STUDIO</span></span>
     </a>
     <button class="navbar-toggler" type="button"
             data-bs-toggle="collapse" data-bs-target="#navMenu"
@@ -43,34 +45,53 @@
 <li><a class="dropdown-item" href="operations.html">Business Operations</a></li>
 <li><a class="dropdown-item" href="financial.html">Financial Proposal</a></li></ul>
         </li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item"><a class="nav-link nav-contact" href="contact.html">Contact</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
 <!-- PAGE HERO -->
-<header class="page-hero">
+<header class="page-hero" data-chapter="03">
   <div class="container">
     <p class="hero-eyebrow">Section 3 &nbsp;·&nbsp; Offerings</p>
     <h1>Products &amp; Services</h1>
-    <p class="lead">
-      Three website tiers built around what small businesses actually require —
-      all mobile-friendly, hand-coded, and previewed live before final payment.
-    </p>
+    <p class="lead">Find the right starting point: a focused menu, a business website, or a site with custom features.</p>
   </div>
 </header>
+<nav class="chapter-nav" aria-label="Explore the proposal"><div class="container chapter-track"><a href="index.html"><span class="chapter-index">01/02</span>Overview</a>
+<a href="services.html" aria-current="page"><span class="chapter-index">03</span>Services</a>
+<a href="portfolio.html"><span class="chapter-index">WORK</span>Portfolio</a>
+<a href="market.html"><span class="chapter-index">04</span>Market</a>
+<a href="marketing.html"><span class="chapter-index">05</span>Marketing</a>
+<a href="operations.html"><span class="chapter-index">06</span>Operations</a>
+<a href="financial.html"><span class="chapter-index">07</span>Financials</a>
+<a href="contact.html"><span class="chapter-index">08</span>Contact</a></div></nav>
 
 <!-- MAIN CONTENT -->
-<main>
+<main id="main-content" tabindex="-1">
   <section id="services">
     <div class="container">
 
       <div class="section-header">
-        <h2>Website Packages</h2>
+        <span class="section-kicker">CHOOSE YOUR STARTING POINT</span><h2>One idea. The right scope.</h2>
         <p class="intro">
-          Choose a straightforward package suited to your current business stage. Prices below are proposal estimates. Illustrations show possible layouts, not completed client websites.
+          Choose a straightforward package suited to your current business stage. Prices below are proposal estimates. Concept previews use fictional businesses and sample content. They are not client websites.
         </p>
+      </div>
+
+      <div class="package-finder" id="package-finder" aria-labelledby="finderTitle">
+        <div><span class="section-kicker">A little guidance</span><h3 id="finderTitle">Find your starting point.</h3><p class="note">Three questions, one suggested package. This is a guide; final scope and pricing are agreed together.</p></div>
+        <form id="packageFinder">
+          <div class="finder-fields">
+            <div><label class="form-label" for="finderPages">1. How many pages do you need?</label><select class="form-select" id="finderPages" required><option value="">Choose page count</option><option value="1">One page</option><option value="5">Two to five pages</option><option value="8">Six to eight pages</option><option value="more">More than eight</option><option value="unsure">I'm not sure yet</option></select></div>
+            <div><label class="form-label" for="finderGallery">2. Do you need a photo or product gallery?</label><select class="form-select" id="finderGallery" required><option value="">Choose an option</option><option value="no">No, a simple overview is enough</option><option value="yes">Yes, I have several things to show</option><option value="unsure">I'm not sure yet</option></select></div>
+            <div><label class="form-label" for="finderFeature">3. What should visitors be able to do?</label><select class="form-select" id="finderFeature" required><option value="">Choose the main feature</option><option value="basic">Read information and contact me</option><option value="calculator">Use a calculator or interactive catalog</option><option value="booking">Send a booking request</option><option value="payments">Pay online or reserve live availability</option><option value="unsure">I need help deciding</option></select></div>
+          </div>
+          <button class="btn btn-accent mt-3" type="submit">Suggest a package &rarr;</button>
+          <div id="finderResult" class="finder-result" role="status" tabindex="-1" hidden><h4 id="finderResultTitle"></h4><p id="finderReason"></p><a id="finderContact" class="btn btn-accent" href="contact.html?plan=general">Discuss this recommendation &rarr;</a></div>
+        </form>
+        <noscript><p class="note">The finder needs JavaScript. You can compare every package below or <a href="contact.html?plan=undecided">ask for help choosing</a>.</p></noscript>
       </div>
 
       <!-- Service cards with images -->
@@ -78,7 +99,7 @@
 
         <!-- Starter -->
         <div class="service-card">
-          <div class="service-concept" role="img" aria-label="A sample bakery menu; illustrative layout, not a client project"><span class="concept-label">Example layout / starter</span><div class="concept-window"><div class="concept-nav"><i></i><i></i><i></i></div><strong>Bakery menu</strong><p>Menu · Prices · Message to order</p><div class="concept-blocks"><span></span><span></span><span></span></div><span class="concept-action">View today’s menu</span></div></div>
+          <div class="service-concept" role="img" aria-label="Illustrative bakery menu with example prices"><span class="concept-label">01 / CONCEPT PREVIEW</span><div class="concept-window concept-bakery"><div class="concept-nav">THE NEIGHBORHOOD BAKERY <span>MENU &#8599;</span></div><div class="bakery-banner"><strong>Baked for<br>your everyday.</strong><span class="bread-art" aria-hidden="true"></span></div><div class="menu-items"><span>Pandesal <b>&#8369;5</b></span><span>Ensaymada <b>&#8369;25</b></span><span>Banana loaf <b>&#8369;120</b></span></div><span class="concept-action">View menu &amp; order &#8599;</span></div></div>
           <div class="service-card-body">
             <div class="service-price">&#8369;3,500</div>
             <h3 class="service-name">Starter Page</h3>
@@ -100,7 +121,7 @@
         <!-- Business Site (Popular) -->
         <div class="service-card service-card--featured">
           <span class="pick-label service-badge">Recommended</span>
-          <div class="service-concept" role="img" aria-label="A sample repair shop website; illustrative layout, not a client project"><span class="concept-label">Example layout / business</span><div class="concept-window"><div class="concept-nav"><i></i><i></i><i></i></div><strong>Repair shop</strong><p>Services · Gallery · Contact</p><div class="concept-blocks"><span></span><span></span><span></span></div><span class="concept-action">Ask about a repair</span></div></div>
+          <div class="service-concept" role="img" aria-label="Illustrative repair business website"><span class="concept-label">02 / CONCEPT PREVIEW</span><div class="concept-window concept-repair"><div class="concept-nav">LOCAL REPAIR CO. <span>SERVICES &#8599;</span></div><strong>Back to<br>working order.</strong><div class="repair-layout"><div><span>01 &nbsp; Laptop repair</span><span>02 &nbsp; Device setup</span><span>03 &nbsp; Diagnostics</span></div><span class="device-art" aria-hidden="true">&lt;/&gt;</span></div><span class="concept-action">Ask about a repair &#8599;</span></div></div>
           <div class="service-card-body">
             <div class="service-price">&#8369;6,500</div>
             <h3 class="service-name">Business Site</h3>
@@ -121,7 +142,7 @@
 
         <!-- Premium Site -->
         <div class="service-card">
-          <div class="service-concept" role="img" aria-label="A sample event website; illustrative layout, not a client project"><span class="concept-label">Example layout / premium</span><div class="concept-window"><div class="concept-nav"><i></i><i></i><i></i></div><strong>Campus event</strong><p>Schedule · Cost calculator · Inquiry</p><div class="concept-blocks"><span></span><span></span><span></span></div><span class="concept-action">Explore the event</span></div></div>
+          <div class="service-concept" role="img" aria-label="Illustrative campus event website"><span class="concept-label">03 / CONCEPT PREVIEW</span><div class="concept-window concept-event"><div class="concept-nav">CAMPUS / CREATE <span>EVENT &#8599;</span></div><strong>A place for<br>your next idea.</strong><div class="event-schedule"><span><b>09:00</b> Welcome &amp; introductions</span><span><b>10:00</b> Build something together</span><span><b>14:00</b> Share your project</span></div><span class="concept-action">Explore the schedule &#8599;</span></div></div>
           <div class="service-card-body">
             <div class="service-price">&#8369;12,000</div>
             <h3 class="service-name">Premium Site</h3>
@@ -147,8 +168,24 @@
       <div class="mt-5 pt-4">
         <h3>Compare website packages</h3>
         <p class="intro">See what each package includes before choosing.</p>
-        <p class="note comparison-hint" id="comparisonHint">On a small screen, swipe across the table to compare all three packages.</p>
-        <div class="table-responsive mt-3" role="region" aria-label="Website package comparison" aria-describedby="comparisonHint" tabindex="0">
+        <div class="mobile-package-comparison">
+          <article class="package-summary" aria-labelledby="summary-starter">
+            <span class="case-label">Package / 01</span><h4 id="summary-starter">Starter Page</h4>
+            <dl><div><dt>Price</dt><dd>₱3,500</dd></div><div><dt>Handcrafted Pages</dt><dd>1 Page (Landing)</dd></div><div><dt>Mobile-First Responsive Layout</dt><dd>✓ Full</dd></div><div><dt>HTML, CSS, JavaScript &amp; Bootstrap</dt><dd>✓ Hand-coded</dd></div><div><dt>Direct Messenger / Viber Routing</dt><dd>✓ Included</dd></div><div><dt>Interactive Contact Form</dt><dd>—</dd></div><div><dt>Photo Gallery / Product Grid</dt><dd>—</dd></div><div><dt>Custom features and calculators</dt><dd>—</dd></div><div><dt>Domain connection &amp; hosting setup</dt><dd>Self / Guide</dd></div><div><dt>Estimated delivery time</dt><dd>5 Business Days</dd></div><div><dt>Complimentary Bug Warranty</dt><dd>7 Days</dd></div></dl>
+            <a class="btn btn-outline-light w-100" href="contact.html?plan=starter">Select Starter Page</a>
+          </article>
+          <article class="package-summary package-summary--featured" aria-labelledby="summary-business">
+            <span class="case-label">Recommended / 02</span><h4 id="summary-business">Business Site</h4>
+            <dl><div><dt>Price</dt><dd>₱6,500</dd></div><div><dt>Handcrafted Pages</dt><dd>Up to 5 Pages</dd></div><div><dt>Mobile-First Responsive Layout</dt><dd>✓ Full</dd></div><div><dt>HTML, CSS, JavaScript &amp; Bootstrap</dt><dd>✓ Hand-coded</dd></div><div><dt>Direct Messenger / Viber Routing</dt><dd>✓ Included</dd></div><div><dt>Interactive Contact Form</dt><dd>✓ Validated Form</dd></div><div><dt>Photo Gallery / Product Grid</dt><dd>✓ Included</dd></div><div><dt>Custom features and calculators</dt><dd>—</dd></div><div><dt>Domain connection &amp; hosting setup</dt><dd>✓ Configured</dd></div><div><dt>Estimated delivery time</dt><dd>10 Business Days</dd></div><div><dt>Complimentary Bug Warranty</dt><dd>7 Days</dd></div></dl>
+            <a class="btn btn-accent w-100" href="contact.html?plan=business">Select Business Site</a>
+          </article>
+          <article class="package-summary" aria-labelledby="summary-premium">
+            <span class="case-label">Package / 03</span><h4 id="summary-premium">Premium Site</h4>
+            <dl><div><dt>Price</dt><dd>₱12,000</dd></div><div><dt>Handcrafted Pages</dt><dd>Up to 8 Pages</dd></div><div><dt>Mobile-First Responsive Layout</dt><dd>✓ Full</dd></div><div><dt>HTML, CSS, JavaScript &amp; Bootstrap</dt><dd>✓ Hand-coded</dd></div><div><dt>Direct Messenger / Viber Routing</dt><dd>✓ Included</dd></div><div><dt>Interactive Contact Form</dt><dd>✓ Custom Routing</dd></div><div><dt>Photo Gallery / Product Grid</dt><dd>✓ Multi-Category</dd></div><div><dt>Custom features and calculators</dt><dd>✓ Custom Built</dd></div><div><dt>Domain connection &amp; hosting setup</dt><dd>✓ Setup included</dd></div><div><dt>Estimated delivery time</dt><dd>14 Business Days</dd></div><div><dt>Complimentary Bug Warranty</dt><dd>14 Days</dd></div></dl>
+            <a class="btn btn-outline-light w-100" href="contact.html?plan=premium">Select Premium Site</a>
+          </article>
+        </div>
+        <div class="table-responsive desktop-package-comparison mt-3" role="region" aria-label="Website package comparison" tabindex="0">
           <table class="table align-middle matrix-table">
             <thead>
               <tr>
@@ -242,11 +279,23 @@
         </ul>
       </div>
 
+      <div class="services-faq" aria-labelledby="faqTitle">
+        <div class="section-header"><span class="section-kicker">Before we build</span><h3 id="faqTitle">A few things you might be wondering.</h3><p class="intro">Clear expectations, from your first inquiry to the handover.</p></div>
+        <div class="faq-list"><details><summary>What do I need to provide before we start?</summary><div class="faq-answer"><p>Your business name, logo if available, approved text, photos you have permission to use, contact details, and the pages or features you need. We agree on the scope and schedule before the initial deposit.</p></div></details>
+<details><summary>When will my website be ready?</summary><div class="faq-answer"><p>The proposed estimates are 5 business days for Starter, 10 for Business, and 14 for Premium. The timeline begins after the deposit and all content are received, and depends on my class schedule and the agreed scope.</p></div></details>
+<details><summary>How do revisions and payments work?</summary><div class="faq-answer"><p>Each package includes one complete revision round. Proposed payment terms are 50% after agreeing on the scope and schedule, and 50% after you approve the staging website. Additional requests outside the agreed scope need a separate quote.</p></div></details>
+<details><summary>Are a domain and hosting included in the price?</summary><div class="faq-answer"><p>Domain registration and renewal are separate costs. Starter includes setup guidance; Business includes configuration; Premium includes domain connection and setup on a suitable free hosting plan. Paid hosting, form services, and backend systems are quoted separately.</p></div></details>
+<details><summary>What happens after launch?</summary><div class="faq-answer"><p>Starter and Business include 7 days of bug fixes; Premium includes 14 days. New features and content changes are separate from bug fixes. Optional monthly content updates cost &#8369;500 for up to one hour of text, photo, or price changes.</p></div></details>
+<details><summary>Can a booking form accept payments or reserve a slot?</summary><div class="faq-answer"><p>The proposed booking feature collects requests. Payment processing and a live reservation system are outside the listed package scope and would need a separate agreement.</p></div></details></div>
+        <p class="note mt-4">Have a different question? <a href="contact.html">Tell me about your project &rarr;</a></p>
+      </div>
+
       <!-- Next Section Pagination Banner -->
       <div class="next-section-banner mt-5">
+        <a class="previous-section" href="index.html">&larr; Overview</a>
         <div>
           <span class="next-label">Next Section &bull; Portfolio</span>
-          <h3 class="next-title">Explore Proven Engineering in Sample Work</h3>
+          <h3 class="next-title">Take a closer look at my projects</h3>
         </div>
         <a href="portfolio.html" class="btn btn-accent btn-lg">View Portfolio &rarr;</a>
       </div>
@@ -258,12 +307,14 @@
 <!-- FOOTER -->
 <footer>
   <div class="container footer-row">
+    <a class="footer-brand d-flex align-items-center" href="index.html"><img class="brand-symbol" src="images/kodigo-mark.svg" alt="" width="48" height="48"><span class="brand-wordmark">Kodigo<span>WEB STUDIO</span></span></a>
     <span>&copy; <span id="year"></span> Kodigo Web Studio &bull; Carl Benedict C. Enriquez &mdash; BS Computer Science Business Proposal.</span>
     <a href="#mainNav">Back to top &uarr;</a>
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
+<script defer src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
+<script defer src="script.js"></script>
+<script defer src="motion.js"></script>
 </body>
 </html>

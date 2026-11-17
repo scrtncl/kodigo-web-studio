@@ -9,7 +9,7 @@ const code = fs.readFileSync(path.join(root, 'script.js'), 'utf8');
 function setup(search = '', clipboard) {
   let focused;
   const nodes = {};
-  for (const id of ['contactForm','cPlan','cMessage','cName','cEmail','formStatus','copyInquiry','manualCopy','inquiryText','navMenu']) {
+  for (const id of ['contactForm','cPlan','cMessage','cName','cEmail','cBusiness','cLaunch','cFeatures','formStatus','copyInquiry','manualCopy','inquiryText','navMenu']) {
     const classes = new Set();
     nodes[id] = {
       value: id === 'cPlan' ? 'general' : '', textContent: '', hidden: true, attrs: {}, events: {},
@@ -35,6 +35,19 @@ function fill(nodes) {
 }
 function submit(nodes) { nodes.contactForm.events.submit({ preventDefault() {} }); }
 async function main() {
+  const undecided = setup('?plan=undecided');
+  assert.equal(undecided.nodes.cPlan.value, 'undecided');
+  assert(undecided.nodes.cMessage.value.includes('help choosing'));
+  fill(undecided.nodes);
+  undecided.nodes.cBusiness.value = 'Bakery & cafe';
+  undecided.nodes.cLaunch.value = '2027-03-01';
+  undecided.nodes.cFeatures.value = 'Menu, gallery & inquiry form';
+  submit(undecided.nodes);
+  const detailedBody = new URL(undecided.window.location.href).searchParams.get('body');
+  assert(detailedBody.includes('Business type: Bakery & cafe'));
+  assert(detailedBody.includes('Preferred launch date: 2027-03-01'));
+  assert(detailedBody.includes('Required features: Menu, gallery & inquiry form'));
+  assert(detailedBody.includes('Help choosing a package'));
   for (const plan of ['starter','business','premium']) {
     const {nodes} = setup('?plan=' + plan);
     assert.equal(nodes.cPlan.value, plan);
@@ -81,10 +94,17 @@ async function main() {
   // A late clipboard response must not display stale confirmation after an edit.
   let finish;
   const race = setup('', { writeText: () => new Promise(resolve => { finish = resolve; }) }); fill(race.nodes);
+  race.nodes.copyInquiry.textContent = 'Copy inquiry instead';
   const pending = race.nodes.copyInquiry.events.click();
+  assert.equal(race.nodes.copyInquiry.textContent, 'Copying inquiry...');
+  assert.equal(race.nodes.copyInquiry.attrs['aria-busy'], 'true');
+  assert.equal(race.nodes.copyInquiry.disabled, true);
   race.nodes.cMessage.value += ' New details';
   race.nodes.contactForm.events.input({ target: race.nodes.cMessage }); finish(); await pending;
   assert(race.nodes.formStatus.classList.contains('d-none'));
+  assert.equal(race.nodes.copyInquiry.textContent, 'Copy inquiry instead');
+  assert.equal(race.nodes.copyInquiry.attrs['aria-busy'], 'false');
+  assert.equal(race.nodes.copyInquiry.disabled, false);
   console.log('PASS: package autofill/switching, preserved custom text, validation/focus, email encoding, clipboard success/fallback/race, mobile menu close.');
   for (const file of fs.readdirSync(root).filter(f => f.endsWith('.html'))) {
     const html = fs.readFileSync(path.join(root,file), 'utf8');

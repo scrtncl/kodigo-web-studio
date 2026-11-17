@@ -13,22 +13,21 @@ if (yearEl) {
   yearEl.textContent = new Date().getFullYear();
 }
 
-// 3. Navigation Active State & Scroll Tracking (e.g. for Home & About on index.html)
-if (document.body.hasAttribute("data-bs-spy") && window.bootstrap && bootstrap.ScrollSpy) {
-  try {
-    new bootstrap.ScrollSpy(document.body, {
-      target: "#mainNav",
-      rootMargin: "0px 0px -50% 0px"
-    });
-  } catch (e) {}
-}
-
-// In-page anchor click immediate highlight
+// 3. One source of truth for the Home / About visual and accessible state.
 var inPageNavLinks = document.querySelectorAll('#mainNav .nav-link[href^="#"]');
+var currentSectionLink;
+function setCurrentSection(link) {
+  if (currentSectionLink === link) return;
+  currentSectionLink = link;
+  inPageNavLinks.forEach(function (item) {
+    item.classList.toggle("active", item === link);
+    if (item === link) item.setAttribute("aria-current", "location");
+    else item.removeAttribute("aria-current");
+  });
+}
 inPageNavLinks.forEach(function (link) {
   link.addEventListener("click", function () {
-    inPageNavLinks.forEach(function (l) { l.classList.remove("active"); });
-    this.classList.add("active");
+    setCurrentSection(link);
   });
 });
 
@@ -42,11 +41,9 @@ window.addEventListener("scroll", function () {
     var scrollPos = window.scrollY || document.documentElement.scrollTop;
     var aboutTrigger = aboutSec.offsetTop - 180;
     if (scrollPos >= aboutTrigger) {
-      homeLink.classList.remove("active");
-      aboutLink.classList.add("active");
+      setCurrentSection(aboutLink);
     } else {
-      aboutLink.classList.remove("active");
-      homeLink.classList.add("active");
+      setCurrentSection(homeLink);
     }
   }
 }, { passive: true });
@@ -56,8 +53,7 @@ if (window.location.hash === "#about") {
   var initialHome = document.querySelector('#mainNav .nav-link[href="#home"]');
   var initialAbout = document.querySelector('#mainNav .nav-link[href="#about"]');
   if (initialHome && initialAbout) {
-    initialHome.classList.remove("active");
-    initialAbout.classList.add("active");
+    setCurrentSection(initialAbout);
   }
 }
 
@@ -199,6 +195,7 @@ if (contactForm) {
   var inquiryText = document.getElementById("inquiryText");
   var planLabels = {
     general: "General consultation / custom project",
+    undecided: "Help choosing a package",
     starter: "Starter Page (\u20B13,500)",
     business: "Business Site (\u20B16,500)",
     premium: "Premium Site (\u20B112,000)"
@@ -223,7 +220,9 @@ if (contactForm) {
   }
 
   function updatePackageIntro() {
-    var intro = planSelect.value === "general"
+    var intro = planSelect.value === "undecided"
+      ? "Hi Carl, I need help choosing the right website package."
+      : planSelect.value === "general"
       ? "Hi Carl, I would like to discuss a website for my business."
       : "Hi Carl, I would like to inquire about the " + selectedPlan() + " package.";
     // Only replace text we generated. Never overwrite a visitor's own message.
@@ -256,6 +255,7 @@ if (contactForm) {
     clearDraftFeedback();
     if (event.target.classList.contains("is-invalid")) validateField(event.target);
   });
+  contactForm.addEventListener("change", clearDraftFeedback);
 
   function buildInquiry() {
     var fields = [document.getElementById("cName"), document.getElementById("cEmail"), messageArea];
@@ -274,6 +274,12 @@ if (contactForm) {
     var subject = "Kodigo Project Inquiry [" + selectedPlan() + "] from " + name;
     var body = "Package: " + selectedPlan() + "\n\nClient Message:\n" + messageArea.value.trim() +
       "\n\nClient Contact: " + name + " (" + email + ")";
+    var optionalDetails = [];
+    [["cBusiness", "Business type"], ["cLaunch", "Preferred launch date"], ["cFeatures", "Required features"]].forEach(function (entry) {
+      var field = document.getElementById(entry[0]);
+      if (field && field.value.trim()) optionalDetails.push(entry[1] + ": " + field.value.trim());
+    });
+    if (optionalDetails.length) body += "\n\nProject details:\n" + optionalDetails.join("\n");
     return { subject: subject, body: body,
       text: "To: " + CONTACT_EMAIL + "\nSubject: " + subject + "\n\n" + body };
   }
@@ -291,7 +297,10 @@ if (contactForm) {
     var inquiry = buildInquiry();
     if (!inquiry) return;
     var version = draftVersion;
+    var buttonLabel = copyButton.textContent;
     copyButton.disabled = true;
+    copyButton.textContent = "Copying inquiry...";
+    copyButton.setAttribute("aria-busy", "true");
     try {
       if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error("Clipboard unavailable");
       await navigator.clipboard.writeText(inquiry.text);
@@ -307,8 +316,109 @@ if (contactForm) {
       showStatus("Automatic copying is unavailable. Copy the selected text below and paste it into your email app.");
     } finally {
       copyButton.disabled = false;
+      copyButton.textContent = buttonLabel;
+      copyButton.setAttribute("aria-busy", "false");
     }
   });
+}
+
+// Scope guidance, not a quote. Keep advanced and uncertain work open for discussion.
+function recommendPackage(pages, gallery, feature) {
+  if (!["1", "5", "8", "more", "unsure"].includes(pages) ||
+      !["no", "yes", "unsure"].includes(gallery) ||
+      !["basic", "calculator", "booking", "payments", "unsure"].includes(feature)) return null;
+  if (pages === "more" || feature === "payments") return { plan: "general", title: "Let's scope a custom project", reason: "More than eight pages, payments, or live reservation availability need a separate scope and quote." };
+  if ([pages, gallery, feature].includes("unsure")) return { plan: "undecided", title: "Let's choose together", reason: "You do not need every detail decided. A short discussion will help define the pages and features you actually need." };
+  if (pages === "8" || feature === "calculator" || feature === "booking") return { plan: "premium", title: "Premium Site - proposed price \u20B112,000", reason: "Your scope needs up to eight pages or an interactive feature. Booking collects requests; payments and live reservations are quoted separately." };
+  if (pages === "5" || gallery === "yes") return { plan: "business", title: "Business Site - proposed price \u20B16,500", reason: "Up to five pages and a photo or product gallery fit this package. It gives your visitors more space to explore your offerings." };
+  return { plan: "starter", title: "Starter Page - proposed price \u20B13,500", reason: "A single page with key information and direct contact links matches your needs." };
+}
+var packageFinder = document.getElementById("packageFinder");
+if (packageFinder) {
+  var finderResult = document.getElementById("finderResult");
+  packageFinder.addEventListener("change", function () { finderResult.hidden = true; });
+  packageFinder.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (!packageFinder.reportValidity()) return;
+    var suggestion = recommendPackage(document.getElementById("finderPages").value,
+      document.getElementById("finderGallery").value, document.getElementById("finderFeature").value);
+    if (!suggestion) return;
+    document.getElementById("finderResultTitle").textContent = suggestion.title;
+    document.getElementById("finderReason").textContent = suggestion.reason;
+    document.getElementById("finderContact").href = "contact.html?plan=" + suggestion.plan;
+    finderResult.hidden = false;
+    finderResult.focus({ preventScroll: true });
+  });
+}
+
+// Manual carousel: no automatic advance while visitors read a screen.
+var networkCarousel = document.getElementById("networkCarousel");
+if (networkCarousel) {
+  var carouselSlides = Array.from(networkCarousel.querySelectorAll("[data-carousel-slide]"));
+  var carouselIndicators = Array.from(networkCarousel.querySelectorAll("[data-carousel-index]"));
+  var carouselStatus = networkCarousel.querySelector("[data-carousel-status]");
+  var carouselIndex = 0;
+  var carouselAnimation;
+  var carouselMotion = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
+  function showCarouselSlide(index, animate) {
+    if (!carouselSlides.length) return;
+    var next = (index + carouselSlides.length) % carouselSlides.length;
+    if (carouselAnimation) carouselAnimation.cancel();
+    if (next !== carouselIndex && carouselSlides[carouselIndex].contains(document.activeElement)) {
+      carouselIndicators[next].focus({ preventScroll: true });
+    }
+    carouselIndex = next;
+    carouselSlides.forEach(function (slide, i) { slide.hidden = i !== next; });
+    carouselIndicators.forEach(function (button, i) {
+      if (i === next) button.setAttribute("aria-current", "true");
+      else button.removeAttribute("aria-current");
+    });
+    carouselStatus.textContent = "Slide " + (next + 1) + " of " + carouselSlides.length + ": " + carouselSlides[next].getAttribute("data-slide-title");
+    var slide = carouselSlides[next];
+    if (animate && slide.animate && !(carouselMotion && carouselMotion.matches)) {
+      try { carouselAnimation = slide.animate([{ opacity: .65 }, { opacity: 1 }], { duration: 180, easing: "ease-out" }); }
+      catch (error) { /* Navigation remains immediate without animation support. */ }
+    }
+  }
+  networkCarousel.querySelector("[data-carousel-prev]").addEventListener("click", function () { showCarouselSlide(carouselIndex - 1, true); });
+  networkCarousel.querySelector("[data-carousel-next]").addEventListener("click", function () { showCarouselSlide(carouselIndex + 1, true); });
+  carouselIndicators.forEach(function (button, index) { button.addEventListener("click", function () { showCarouselSlide(index, true); }); });
+  networkCarousel.addEventListener("keydown", function (event) {
+    if (event.altKey || event.ctrlKey || event.metaKey || /^(INPUT|TEXTAREA|SELECT|IFRAME)$/.test(event.target.tagName)) return;
+    if (event.key === "ArrowLeft" || event.key === "ArrowRight" || event.key === "Home" || event.key === "End") {
+      event.preventDefault();
+      var next = event.key === "Home" ? 0 : event.key === "End" ? carouselSlides.length - 1 : carouselIndex + (event.key === "ArrowLeft" ? -1 : 1);
+      showCarouselSlide(next, true);
+      if (carouselIndicators.includes(event.target)) carouselIndicators[carouselIndex].focus({ preventScroll: true });
+    }
+  });
+  var carouselSwipe;
+  var carouselSuppressClick = false;
+  var carouselStage = networkCarousel.querySelector(".carousel-stage");
+  carouselStage.addEventListener("pointerdown", function (event) {
+    carouselSuppressClick = false;
+    if (event.pointerType === "touch" || event.pointerType === "pen") carouselSwipe = { x: event.clientX, y: event.clientY, id: event.pointerId };
+  });
+  carouselStage.addEventListener("pointerup", function (event) {
+    if (!carouselSwipe || carouselSwipe.id !== event.pointerId) return;
+    var dx = event.clientX - carouselSwipe.x, dy = event.clientY - carouselSwipe.y;
+    carouselSwipe = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      carouselSuppressClick = true;
+      showCarouselSlide(carouselIndex + (dx < 0 ? 1 : -1), true);
+    }
+  });
+  carouselStage.addEventListener("click", function (event) {
+    if (carouselSuppressClick && event.detail > 0) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    carouselSuppressClick = false;
+  }, true);
+  carouselStage.addEventListener("pointercancel", function () { carouselSwipe = null; });
+  if (carouselMotion && carouselMotion.addEventListener) carouselMotion.addEventListener("change", function () { if (carouselMotion.matches && carouselAnimation) carouselAnimation.cancel(); });
+  showCarouselSlide(0, false);
+  networkCarousel.querySelector("[data-carousel-controls]").hidden = false;
 }
 
 // Close an expanded mobile menu after choosing an in-page destination.
